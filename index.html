@@ -1,0 +1,1385 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday, Aysha! | Chemical Universe</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&family=Inter:wght@300;400;600;800&family=Great+Vibes&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Canvas Confetti -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <!-- Tone.js for Web Audio Synthesis -->
+    
+ <audio id="birthdayMusic" loop preload="auto">
+        <source src="./Parano.mp3" type="audio/mpeg">
+        Your browser does not support audio.
+    </audio>
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        neonPink: '#ff2a8d',
+                        neonCyan: '#00f3ff',
+                        neonYellow: '#ffd700',
+                        neonPurple: '#9d4edd',
+                        deepSpace: '#03030c',
+                    },
+                    fontFamily: {
+                        cinzel: ['Cinzel', 'serif'],
+                        vibes: ['Great Vibes', 'cursive'],
+                        mono: ['Fira Code', 'monospace'],
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    boxShadow: {
+                        neonGlow: '0 0 25px rgba(255, 42, 141, 0.6), 0 0 10px rgba(0, 243, 255, 0.4)',
+                        cyanGlow: '0 0 20px rgba(0, 243, 255, 0.5)',
+                        yellowGlow: '0 0 20px rgba(255, 215, 0, 0.6)',
+                        purpleGlow: '0 0 20px rgba(157, 78, 221, 0.6)',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #03030c;
+            color: #e2e8f0;
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        .glass-panel {
+            background: rgba(12, 16, 38, 0.8);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border: 1px solid rgba(0, 243, 255, 0.25);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.6), inset 0 0 15px rgba(0, 243, 255, 0.05);
+            border-radius: 1rem;
+        }
+
+        .glass-panel-pink {
+            background: rgba(25, 10, 30, 0.82);
+            backdrop-filter: blur(14px);
+            border: 1px solid rgba(255, 42, 141, 0.35);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.6), inset 0 0 15px rgba(255, 42, 141, 0.08);
+            border-radius: 1rem;
+        }
+
+        .text-glow-pink {
+            text-shadow: 0 0 10px #ff2a8d, 0 0 20px #ff2a8d, 0 0 40px #ff2a8d;
+        }
+
+        .text-glow-cyan {
+            text-shadow: 0 0 10px #00f3ff, 0 0 20px #00f3ff, 0 0 35px #00f3ff;
+        }
+
+        .text-glow-yellow {
+            text-shadow: 0 0 10px #ffd700, 0 0 25px rgba(255, 215, 0, 0.8);
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #03030c;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1e1b4b;
+            border-radius: 4px;
+            border: 1px solid #00f3ff;
+        }
+
+        /* Candles Flame Animation */
+        .flame {
+            background: radial-gradient(ellipse at bottom, #ffffff 0%, #ffd700 35%, #ff4500 75%, transparent 100%);
+            border-radius: 50% 50% 20% 20%;
+            box-shadow: 0 0 12px #ffd700, 0 0 24px #ff4500;
+            animation: flicker 0.12s infinite alternate ease-in-out;
+        }
+        @keyframes flicker {
+            0% { transform: scale(1) rotate(-1.5deg); opacity: 0.9; }
+            100% { transform: scale(1.15) rotate(1.5deg); opacity: 1; }
+        }
+
+        /* Neon Glowing Knife Cursor Shadow */
+        .knife-glow {
+            filter: drop-shadow(0 0 8px #00f3ff) drop-shadow(0 0 15px #ff2a8d);
+        }
+
+        .btn-neon {
+            position: relative;
+            transition: all 0.3s ease;
+            overflow: hidden;
+        }
+        .btn-neon::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%; width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.35), transparent);
+            transition: 0.5s;
+        }
+        .btn-neon:hover::before {
+            left: 100%;
+        }
+
+        /* Sweet Floating Animation */
+        @keyframes sweetFloat {
+            0% { transform: translateY(0px) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(-120px) rotate(360deg); opacity: 0; }
+        }
+        .animate-sweet {
+            animation: sweetFloat 2.5s ease-out forwards;
+
+        }
+
+        
+/* Beautiful, responsive 118-element periodic table */
+.periodic-grid {
+    display: grid;
+    grid-template-columns: repeat(18, minmax(0, 1fr));
+    gap: 5px;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Each atom card */
+.element-card {
+    min-width: 0;
+    min-height: 64px;
+    padding: 5px 2px;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    text-align: center;
+    cursor: pointer;
+    overflow: hidden;
+    transition: transform 0.2s ease,
+                box-shadow 0.2s ease,
+                border-color 0.2s ease;
+}
+
+.element-card:hover {
+    transform: translateY(-3px) scale(1.06);
+    box-shadow: 0 0 12px rgba(0, 243, 255, 0.35);
+    z-index: 2;
+}
+
+.element-number {
+    align-self: flex-start;
+    font-size: 9px;
+    line-height: 1;
+    color: #94a3b8;
+}
+
+.element-symbol {
+    font-family: 'Fira Code', monospace;
+    font-size: clamp(11px, 1.1vw, 16px);
+    line-height: 1.2;
+    font-weight: 700;
+    color: #e2e8f0;
+}
+
+.element-name {
+    width: 100%;
+    font-size: 8px;
+    line-height: 1.1;
+    color: #cbd5e1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.element-card {
+    min-width: 0;
+    min-height: 72px;
+    padding: 5px 2px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    text-align: center;
+    overflow: visible;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.element-number {
+    display: block;
+    width: 100%;
+    text-align: left;
+    font-size: 10px;
+    line-height: 1.2;
+    color: #cbd5e1;
+}
+
+.element-symbol {
+    display: block;
+    font-size: 16px;
+    line-height: 1.3;
+    font-weight: 800;
+    color: #f8fafc;
+}
+
+.element-name {
+    display: block;
+    width: 100%;
+    font-size: 9px;
+    line-height: 1.2;
+    color: #e2e8f0;
+    white-space: normal;
+    overflow-wrap: anywhere;
+    text-align: center;
+}
+
+@media (max-width: 480px) {
+    .element-card {
+        min-height: 66px;
+    }
+
+    .element-symbol {
+        font-size: 14px;
+    }
+
+    .element-name {
+        font-size: 8px;
+    }
+}
+
+.element-card.is-oxygen {
+    border-color: #ff2a8d;
+    box-shadow: 0 0 12px rgba(255, 42, 141, 0.35);
+}
+
+.element-card.is-oxygen .element-symbol {
+    color: #ff79bd;
+}
+
+/* Medium screens */
+@media (max-width: 900px) {
+    .periodic-grid {
+        grid-template-columns: repeat(12, minmax(48px, 1fr));
+        min-width: 620px;
+        gap: 4px;
+    }
+
+    .element-card {
+        min-height: 58px;
+    }
+}
+
+/* Small mobile screens */
+@media (max-width: 480px) {
+    .periodic-grid {
+        grid-template-columns: repeat(9, minmax(48px, 1fr));
+        min-width: 460px;
+        gap: 4px;
+    }
+
+    .element-card {
+        min-height: 55px;
+        padding: 4px 2px;
+    }
+
+    .element-symbol {
+        font-size: 12px;
+    }
+}
+    </style>
+</head>
+<body class="relative min-h-screen">
+
+    <!-- Background Canvas for Space Particles & Fireworks -->
+    <canvas id="bgCanvas" class="fixed top-0 left-0 w-full h-full pointer-events-none z-0"></canvas>
+
+    <!-- Header Navigation -->
+    <header class="fixed top-0 left-0 right-0 z-50 bg-slate-950/85 backdrop-blur-md border-b border-cyan-500/30 px-4 py-3 flex items-center justify-between">
+        <div class="flex items-center space-x-3">
+            <div class="w-9 h-9 rounded-full bg-gradient-to-tr from-pink-500 via-yellow-400 to-cyan-400 p-[2px] animate-pulse">
+                <div class="w-full h-full bg-slate-950 rounded-full flex items-center justify-center font-bold text-cyan-400 text-xs font-mono">
+                    <sub>8</sub>O
+                </div>
+            </div>
+            <div>
+                <h1 class="font-cinzel text-sm sm:text-base font-bold bg-gradient-to-r from-pink-400 via-yellow-300 to-cyan-400 bg-clip-text text-transparent">
+                    AYSHA'S CHEMICAL UNIVERSE
+                </h1>
+                <p class="text-[10px] text-slate-400 hidden sm:block">Department of Chemistry | Oxygen Batch</p>
+            </div>
+        </div>
+
+        <!-- Scene Jump Nav Bar -->
+        
+
+        <div class="flex items-center space-x-2">
+            <button id="audioToggleBtn" onclick="toggleAudio()" class="w-9 h-9 rounded-full bg-slate-900 border border-pink-500/50 flex items-center justify-center text-pink-400 hover:scale-110 transition shadow-cyanGlow" title="Toggle Sound Ambient">
+                <i id="audioIcon" class="fas fa-volume-xmark"></i>
+            </button>
+            <button onclick="toggleMobileMenu()" class="lg:hidden w-9 h-9 rounded-md bg-slate-900 border border-cyan-500/40 text-cyan-400 flex items-center justify-center">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Mobile Drawer -->
+    <div id="mobileMenu" class="fixed inset-x-0 top-14 bg-slate-950/95 border-b border-cyan-500/30 z-40 p-4 hidden lg:hidden flex-col gap-2 text-sm">
+        <button onclick="scrollToScene('scene-1'); toggleMobileMenu()" class="text-left py-2 px-3 hover:bg-cyan-950/50 rounded text-cyan-300">1. Opening Scene</button>
+        <button onclick="scrollToScene('scene-2'); toggleMobileMenu()" class="text-left py-2 px-3 hover:bg-cyan-950/50 rounded text-cyan-300">2. Periodic Table (Compliments)</button>
+        <button onclick="scrollToScene('scene-3'); toggleMobileMenu()" class="text-left py-2 px-3 hover:bg-cyan-950/50 rounded text-cyan-300">3. 118 Elements Cake</button>
+        <button onclick="scrollToScene('scene-4'); toggleMobileMenu()" class="text-left py-2 px-3 hover:bg-cyan-950/50 rounded text-cyan-300">4. Cut the Cake (Knife Tool)</button>
+        <button onclick="scrollToScene('scene-5'); toggleMobileMenu()" class="text-left py-2 px-3 hover:bg-cyan-950/50 rounded text-cyan-300">5. Sweet & Spicy Celebration</button>
+        <button onclick="scrollToScene('scene-6'); toggleMobileMenu()" class="text-left py-2 px-3 hover:bg-cyan-950/50 rounded text-cyan-300">6. Tribute to Chemist</button>
+        <button onclick="scrollToScene('scene-7'); toggleMobileMenu()" class="text-left py-2 px-3 hover:bg-cyan-950/50 rounded text-cyan-300">7. Secret Sweets Gift</button>
+        <button onclick="scrollToScene('scene-8'); toggleMobileMenu()" class="text-left py-2 px-3 hover:bg-cyan-950/50 rounded text-cyan-300">8. Floral Wreath & Fireworks</button>
+    </div>
+
+    <main class="relative z-10 pt-16">
+
+        <!-- Scene 1: Opening Scene -->
+        <section id="scene-1" class="min-h-screen flex items-center justify-center px-4 py-12 relative">
+            <div class="glass-panel max-w-4xl w-full p-8 md:p-12 text-center relative border-pink-500/40">
+                <p class="text-slate-300 text-base md:text-lg italic mb-2 tracking-wide font-light">
+                    "Every extraordinary world begins with an element..."
+                </p>
+                <p class="text-cyan-300 text-sm md:text-base font-semibold mb-8 tracking-wider">
+                    And today, the universe celebrates one extraordinary element.
+                </p>
+
+                <h1 class="font-vibes text-7xl sm:text-8xl md:text-9xl text-pink-400 text-glow-pink my-4 tracking-wider leading-none">
+                    Aysha
+                </h1>
+
+                <h2 class="font-cinzel text-xl md:text-3xl font-bold tracking-widest text-slate-100 uppercase mb-10">
+                    Happy Birthday, Aysha!
+                </h2>
+
+                <button onclick="scrollToScene('scene-2')" class="btn-neon px-8 py-4 rounded-full bg-gradient-to-r from-pink-600 via-purple-600 to-cyan-500 text-white font-bold text-sm tracking-widest uppercase shadow-neonGlow hover:scale-105 transition transform active:scale-95 inline-flex items-center space-x-3">
+                    <span>ENTER YOUR CHEMICAL UNIVERSE</span>
+                    <i class="fas fa-arrow-right"></i>
+                </button>
+            </div>
+        </section>
+
+        <!-- Scene 2: Periodic Table (Interactive with Compliments) -->
+        <section id="scene-2" class="min-h-screen flex flex-col justify-center px-2 sm:px-6 py-12">
+            <div class="max-w-7xl mx-auto w-full glass-panel p-4 sm:p-6 border-cyan-500/30">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between mb-4 border-b border-cyan-500/20 pb-3 gap-2">
+                    <div>
+                        <h2 class="font-cinzel text-lg sm:text-2xl font-bold text-cyan-300 flex items-center gap-2">
+                            <i class="fas fa-atom text-pink-500"></i> 2. Periodic Table of Aysha
+                        </h2>
+                        <p class="text-xs text-slate-400">Tap or click ANY of the 118 atoms to reveal a unique personal compliment!</p>
+                    </div>
+                    <span id="atomCounterBadge" class="self-start sm:self-auto px-3 py-1 rounded-full bg-pink-950/80 border border-pink-400 text-pink-300 text-xs font-mono">
+                        Tap an Atom
+                    </span>
+                </div>
+
+                <!-- Element Detail Inspector & Compliment Box -->
+                <div id="inspectorCard" class="mb-6 p-4 rounded-xl bg-slate-950/90 border-2 border-pink-500/50 shadow-neonGlow grid grid-cols-1 md:grid-cols-12 gap-4 items-center">
+                    <div class="md:col-span-4 flex items-center space-x-4">
+                        <div id="inspectBox" class="w-20 h-20 rounded-xl border-2 border-cyan-400 bg-cyan-950/60 flex flex-col justify-between p-2 shadow-cyanGlow shrink-0">
+                            <div class="flex justify-between items-center text-[10px] text-cyan-300">
+                                <span id="inspectNumber">8</span>
+                                <span id="inspectMass">15.999</span>
+                            </div>
+                            <div id="inspectSymbol" class="text-3xl font-bold text-center text-pink-400 font-mono">O</div>
+                            <div id="inspectName" class="text-[10px] text-center text-slate-200 truncate">Oxygen</div>
+                        </div>
+                        <div>
+                            <div id="inspectCategoryBadge" class="inline-block px-2 py-0.5 rounded text-[10px] font-semibold bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 mb-1">Nonmetal</div>
+                            <h3 id="inspectFullName" class="text-xl font-bold text-white">Oxygen</h3>
+                            <p class="text-xs text-slate-400">Symbol: <span id="inspectSymText" class="text-cyan-300 font-bold">O</span> | Atomic Number: <span id="inspectNumText" class="text-pink-400 font-bold">8</span></p>
+                        </div>
+                    </div>
+                    <div class="md:col-span-8 text-sm text-slate-200 border-t md:border-t-0 md:border-l border-cyan-500/30 pt-3 md:pt-0 md:pl-4">
+                        <div class="text-xs font-mono text-cyan-400 mb-1 uppercase tracking-wider flex items-center gap-1">
+                            <i class="fas fa-sparkles text-yellow-400"></i> Chemistry Compliment for Aysha:
+                        </div>
+                        <p id="inspectCompliment" class="text-base text-pink-300 font-medium leading-relaxed italic">
+                            "Essential to everyone around you, breathing life, boundless joy, and vibrant energy into every room you step into!"
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Periodic Grid -->
+                
+<!-- Responsive Periodic Table -->
+<div class="w-full overflow-x-auto pb-4">
+    <div
+        id="periodicGrid"
+        class="periodic-grid"
+    >
+        <!-- The 118 elements are added by JavaScript -->
+    </div>
+</div>
+
+        <!-- Scene 3: 118 Elements Cake -->
+        <section id="scene-3" class="min-h-screen flex items-center justify-center px-4 py-12">
+            <div class="max-w-6xl w-full grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                <!-- Visual Tiered Cake Display -->
+                <div class="lg:col-span-7 glass-panel-pink p-6 relative flex flex-col items-center justify-center min-h-[460px]">
+                    <div class="text-center mb-6">
+                        <div class="text-xs text-cyan-300 tracking-widest font-mono uppercase">3. 118 Elements Cake Structure</div>
+                        <h3 class="text-2xl md:text-3xl font-bold font-cinzel text-pink-400 text-glow-pink">HAPPY BIRTHDAY AYSHA</h3>
+                    </div>
+
+                    <!-- Tiered Cake Visual representing 118 atoms -->
+                    <div class="relative w-full max-w-lg flex flex-col items-center">
+                        <!-- Top Flickering Candles Row -->
+                        <div class="flex space-x-2 sm:space-x-4 mb-2">
+                            <div class="flex flex-col items-center"><div class="w-3 h-5 flame mb-0.5"></div><div class="w-2.5 h-10 bg-gradient-to-b from-cyan-300 via-pink-500 to-purple-600 rounded-sm"></div></div>
+                            <div class="flex flex-col items-center"><div class="w-3 h-5 flame mb-0.5"></div><div class="w-2.5 h-10 bg-gradient-to-b from-yellow-300 via-pink-500 to-purple-600 rounded-sm"></div></div>
+                            <div class="flex flex-col items-center"><div class="w-3 h-5 flame mb-0.5"></div><div class="w-2.5 h-10 bg-gradient-to-b from-cyan-300 via-pink-500 to-purple-600 rounded-sm"></div></div>
+                            <div class="flex flex-col items-center"><div class="w-3 h-5 flame mb-0.5"></div><div class="w-2.5 h-10 bg-gradient-to-b from-yellow-300 via-pink-500 to-purple-600 rounded-sm"></div></div>
+                            <div class="flex flex-col items-center"><div class="w-3 h-5 flame mb-0.5"></div><div class="w-2.5 h-10 bg-gradient-to-b from-cyan-300 via-pink-500 to-purple-600 rounded-sm"></div></div>
+                        </div>
+
+                        <!-- Tier 1: Period 1-2 (Lightest elements) -->
+                        <div class="w-56 py-2 px-3 rounded-t-xl bg-gradient-to-r from-pink-900/90 via-purple-900/90 to-pink-900/90 border-2 border-pink-400 shadow-neonGlow flex justify-around items-center text-xs font-mono font-bold text-cyan-200 mb-1">
+                            <span class="px-1.5 py-0.5 bg-slate-900 rounded border border-cyan-400">1 H</span>
+                            <span class="px-1.5 py-0.5 bg-pink-950 rounded border border-pink-400 animate-pulse text-yellow-300">8 O</span>
+                            <span class="px-1.5 py-0.5 bg-purple-950 rounded border border-purple-400">10 Ne</span>
+                        </div>
+
+                        <!-- Tier 2: Period 3-4 -->
+                        <div class="w-72 py-2.5 px-3 bg-gradient-to-r from-indigo-950/90 via-purple-950/90 to-indigo-950/90 border-2 border-cyan-400 shadow-cyanGlow flex justify-between items-center text-xs font-mono font-bold text-pink-200 mb-1 rounded-sm">
+                            <span class="px-1 py-0.5 bg-slate-900 rounded border border-indigo-400">11 Na</span>
+                            <span class="px-1 py-0.5 bg-slate-900 rounded border border-indigo-400">26 Fe</span>
+                            <span class="px-1 py-0.5 bg-slate-900 rounded border border-indigo-400">29 Cu</span>
+                            <span class="px-1 py-0.5 bg-slate-900 rounded border border-indigo-400">36 Kr</span>
+                        </div>
+
+                        <!-- Tier 3: Period 5-6 -->
+                        <div class="w-88 sm:w-96 py-3 px-4 bg-gradient-to-r from-purple-950/90 via-pink-950/90 to-purple-950/90 border-2 border-yellow-400 shadow-yellowGlow flex justify-between items-center text-xs font-mono font-bold text-yellow-300 mb-1 rounded-sm">
+                            <span class="px-1.5 py-0.5 bg-slate-900 rounded border border-yellow-400">47 Ag</span>
+                            <span class="px-1.5 py-0.5 bg-slate-900 rounded border border-yellow-400">54 Xe</span>
+                            <span class="px-1.5 py-0.5 bg-slate-900 rounded border border-yellow-400">79 Au</span>
+                            <span class="px-1.5 py-0.5 bg-slate-900 rounded border border-yellow-400">80 Hg</span>
+                        </div>
+
+                        <!-- Base Tier: Heavy Elements 87-118 -->
+                        <div class="w-full max-w-md py-3.5 px-4 rounded-b-2xl bg-gradient-to-r from-pink-950/90 via-slate-900 to-pink-950/90 border-2 border-pink-500 shadow-neonGlow flex justify-between items-center text-xs font-mono font-bold text-cyan-300">
+                            <span class="px-2 py-0.5 bg-purple-950 rounded border border-pink-400">88 Ra</span>
+                            <span class="px-2 py-0.5 bg-purple-950 rounded border border-pink-400">92 U</span>
+                            <span class="px-2 py-0.5 bg-purple-950 rounded border border-pink-400">118 Og</span>
+                        </div>
+
+                        <div class="w-full h-4 bg-gradient-to-r from-cyan-400 via-pink-500 to-cyan-400 rounded-full mt-2 shadow-cyanGlow"></div>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-5 space-y-6">
+                    <div class="inline-block px-3 py-1 rounded-full bg-cyan-950/80 border border-cyan-400/40 text-cyan-300 text-xs font-semibold">
+                        3. 118 Elements Cake
+                    </div>
+                    <h2 class="font-cinzel text-3xl md:text-4xl font-bold text-white leading-tight">
+                        118 Elements.<br/>
+                        <span class="text-pink-400 text-glow-pink">Countless Reactions.</span><br/>
+                        One Extraordinary Birthday.
+                    </h2>
+                    <p class="text-slate-300 text-sm md:text-base leading-relaxed">
+                        Formed from all 118 building blocks of nature, baked in the cosmic forge just for Oxygen Batch's brightest star!
+                    </p>
+                    <button onclick="scrollToScene('scene-4')" class="btn-neon px-7 py-3.5 rounded-full bg-gradient-to-r from-cyan-500 to-pink-500 text-white font-bold text-sm tracking-wider uppercase shadow-cyanGlow hover:scale-105 transition flex items-center gap-3">
+                        <span>CUT THE CAKE WITH KNIFE</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Scene 4: Cut the Cake (Interactive Knife Slicing) -->
+        <section id="scene-4" class="min-h-screen flex items-center justify-center px-4 py-12">
+            <div class="max-w-5xl w-full glass-panel p-6 border-pink-500/30 flex flex-col items-center">
+                <div class="text-center max-w-2xl mb-4">
+                    <div class="text-pink-400 font-mono text-xs tracking-widest uppercase mb-1">4. Cut the Cake (Interactive)</div>
+                    <h2 class="font-cinzel text-2xl md:text-3xl font-bold text-white mb-2">Time to Cut Your Elemental Cake!</h2>
+                    <p class="text-cyan-200 text-sm">
+                        Hover or touch to wield the <span class="text-pink-400 font-bold">Glowing Neon Chemical Knife</span>. Drag across the cake to slice through the 118 elements with spark reactions!
+                    </p>
+                </div>
+
+                <!-- Interactive Cut Canvas Container -->
+                <div id="cakeCanvasContainer" class="relative w-full max-w-2xl h-80 sm:h-96 rounded-2xl overflow-hidden border-2 border-cyan-500/50 bg-slate-950/95 shadow-neonGlow cursor-none my-2">
+                    <canvas id="cakeCanvas" class="w-full h-full block"></canvas>
+
+                    <!-- Overlay Glowing Knife Tool -->
+                    <div id="knifeTool" class="pointer-events-none absolute w-16 h-16 -ml-8 -mt-8 hidden z-20 knife-glow transition-transform duration-75">
+                        <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 52L24 40M24 40L48 16C52 12 56 12 56 12C56 12 56 16 52 20L28 44M24 40L28 44M24 40L20 36L12 44L16 48L12 52Z" stroke="#00f3ff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M28 44L48 16" stroke="#ff2a8d" stroke-width="2"/>
+                            <circle cx="52" cy="12" r="3" fill="#ffd700"/>
+                        </svg>
+                    </div>
+
+                    <div id="cutInstructionHint" class="absolute bottom-4 left-1/2 transform -translate-x-1/2 pointer-events-none bg-slate-900/90 px-4 py-1.5 rounded-full border border-pink-500/50 text-xs text-pink-300 flex items-center gap-2 shadow-neonGlow">
+                        <i class="fas fa-hand-pointer animate-bounce text-cyan-400"></i> Drag glowing knife across cake to cut slices!
+                    </div>
+                </div>
+
+                <div class="mt-4 flex flex-wrap justify-center gap-4">
+                    <button onclick="resetCakeCanvas()" class="px-6 py-2.5 rounded-full bg-slate-900 border border-cyan-400/60 text-cyan-300 hover:bg-cyan-950 font-mono text-xs tracking-wider transition flex items-center gap-2">
+                        <i class="fas fa-rotate-right"></i> RESET CAKE & SLICES
+                    </button>
+                    <button onclick="scrollToScene('scene-5')" class="px-6 py-2.5 rounded-full bg-pink-600 border border-pink-400 text-white font-mono text-xs tracking-wider hover:bg-pink-500 transition shadow-neonGlow">
+                        SWEET & SPICY REACTION <i class="fas fa-chevron-right ml-1"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Scene 5: Sweet and Spicy Celebration -->
+        <section id="scene-5" class="min-h-screen flex items-center justify-center px-4 py-12">
+            <div class="max-w-5xl w-full relative">
+                <!-- Floating Sweet / Spicy Particles Layer -->
+                <div id="reactionFxContainer" class="pointer-events-none absolute inset-0 z-30 overflow-hidden"></div>
+
+                <div class="text-center mb-8">
+                    <div class="text-cyan-400 text-xs font-mono uppercase tracking-widest">5. Dual Reaction Chamber</div>
+                    <h2 class="font-cinzel text-3xl md:text-4xl font-bold text-white">Sweet and Spicy Celebration</h2>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- Sweet Reaction Card -->
+                    <div class="glass-panel-pink p-6 text-center flex flex-col justify-between items-center relative overflow-hidden group hover:border-pink-400 transition">
+                        <div class="my-4">
+                            <div class="w-24 h-24 mx-auto rounded-full bg-gradient-to-tr from-pink-500 to-purple-500 flex items-center justify-center text-5xl shadow-neonGlow group-hover:scale-110 transition duration-300">
+                                🧁
+                            </div>
+                            <h3 class="font-cinzel text-2xl font-bold text-pink-300 my-3">Sweet Reaction</h3>
+                            <p class="text-slate-300 text-sm max-w-xs mx-auto leading-relaxed">
+                                Sweetness is a reaction.<br/>
+                                <span class="text-pink-400 font-semibold">Your brilliance is the catalyst.</span>
+                            </p>
+                        </div>
+                        <button onclick="triggerSweetReaction()" class="btn-neon px-6 py-3.5 rounded-full bg-pink-600 hover:bg-pink-500 text-white font-bold text-xs tracking-widest uppercase shadow-neonGlow transition w-full max-w-xs">
+                            <i class="fas fa-wand-magic-sparkles mr-2"></i> TAP FOR SWEETNESS
+                        </button>
+                    </div>
+
+                    <!-- Spicy Reaction Card -->
+                    <div class="glass-panel p-6 text-center flex flex-col justify-between items-center relative overflow-hidden group hover:border-cyan-400 transition">
+                        <div class="my-4">
+                            <div class="w-24 h-24 mx-auto rounded-full bg-gradient-to-tr from-red-600 via-amber-500 to-yellow-400 flex items-center justify-center text-5xl shadow-cyanGlow group-hover:scale-110 transition duration-300">
+                                🌶️
+                            </div>
+                            <h3 class="font-cinzel text-2xl font-bold text-amber-400 my-3">Spicy Reaction</h3>
+                            <p class="text-slate-300 text-sm max-w-xs mx-auto leading-relaxed">
+                               Your loves for chemistry is same like you love to eat more and more spicy curry <span class="text-red-400 font-bold uppercase tracking-wide">EXTRA SPICY!</span>
+                            </p>
+                        </div>
+                        <button onclick="triggerSpicyReaction()" class="btn-neon px-6 py-3.5 rounded-full bg-gradient-to-r from-red-600 to-amber-500 hover:from-red-500 hover:to-amber-400 text-white font-bold text-xs tracking-widest uppercase shadow-yellowGlow transition w-full max-w-xs">
+                            <i class="fas fa-fire-flame-curved mr-2"></i> IGNITE THE REACTION
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Scene 6: A Tribute to a Brilliant Chemist -->
+        <section id="scene-6" class="min-h-screen flex items-center justify-center px-4 py-12">
+            <div class="max-w-6xl w-full glass-panel p-6 md:p-10 border-cyan-400/40">
+                <div class="text-cyan-400 text-xs font-mono uppercase tracking-widest mb-1">6. Academic & Personal Dedication</div>
+                <h2 class="font-cinzel text-2xl md:text-3xl font-bold text-white mb-8">For a Brilliant Chemist</h2>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                    <div class="lg:col-span-5 flex flex-col items-center">
+                        <div class="relative w-64 h-64 rounded-2xl bg-gradient-to-b from-indigo-950 via-slate-900 to-purple-950 p-1 border-2 border-cyan-400 shadow-neonGlow flex items-center justify-center overflow-hidden">
+                            <div class="relative z-10 flex flex-col items-center text-center">
+                                <div class="w-28 h-28 rounded-full bg-cyan-950/80 border-2 border-pink-400 flex items-center justify-center text-5xl text-pink-400 shadow-cyanGlow mb-3">
+                                    👩‍🔬
+                                </div>
+                                <div class="px-3 py-1 rounded-full bg-pink-950/80 border border-pink-400 text-pink-300 text-xs font-semibold">
+                                    Aysha Siddika Humaira
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="lg:col-span-7 space-y-6">
+                        <div class="grid grid-cols-3 gap-2 sm:gap-4">
+                            <div class="p-3 rounded-lg bg-slate-900/80 border border-cyan-500/30 text-center">
+                                <i class="fas fa-brain text-pink-400 text-lg mb-1"></i>
+                                <div class="text-xs font-bold text-white">Brilliant mind.</div>
+                            </div>
+                            <div class="p-3 rounded-lg bg-slate-900/80 border border-cyan-500/30 text-center">
+                                <i class="fas fa-compass text-cyan-400 text-lg mb-1"></i>
+                                <div class="text-xs font-bold text-white">Curious soul.</div>
+                            </div>
+                            <div class="p-3 rounded-lg bg-slate-900/80 border border-cyan-500/30 text-center">
+                                <i class="fas fa-atom text-purple-400 text-lg mb-1"></i>
+                                <div class="text-xs font-bold text-white">Extraordinary potential.</div>
+                            </div>
+                        </div>
+
+                        <div class="p-5 rounded-xl bg-slate-950/70 border border-slate-800 text-slate-200 text-sm md:text-base leading-relaxed">
+                            "To the topper of Oxygen Batch at JUST — may your curiosity always lead you to wonderful discoveries."
+                        </div>
+
+                        <div class="p-4 rounded-xl border border-cyan-500/30 bg-cyan-950/30 flex items-center space-x-4">
+                            <div class="w-12 h-12 rounded-lg bg-slate-900 border border-cyan-400 flex items-center justify-center text-cyan-400 text-2xl shrink-0">
+                                <i class="fas fa-graduation-cap"></i>
+                            </div>
+                            <div class="text-xs text-slate-300 leading-tight">
+                                <div class="font-bold text-cyan-300 text-sm">Jashore University of Science and Technology</div>
+                                <div class="text-slate-400">Department of Chemistry</div>
+                                <div class="text-pink-400 font-mono mt-0.5">Session: 2020–21 | Batch: Oxygen | Id:201401</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Scene 7: The Secret Birthday Gift (Chocolates & Sweets Unboxing) -->
+        <section id="scene-7" class="min-h-screen flex items-center justify-center px-4 py-12">
+            <div class="max-w-5xl w-full grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
+                <div class="md:col-span-5 glass-panel-pink p-8 text-center flex flex-col items-center justify-center min-h-[400px]">
+                    <div class="text-xs font-mono text-pink-400 uppercase tracking-widest mb-2">7. The Secret Birthday Gift</div>
+                    <h3 class="font-cinzel text-xl font-bold text-white mb-2">One last experiment remains...</h3>
+                    <p class="text-xs text-slate-300 mb-6">A special box filled with sweets & chocolates!</p>
+
+                    <div id="giftBoxContainer" onclick="openGiftModal()" class="cursor-pointer group relative my-4">
+                        <div class="w-36 h-36 rounded-2xl bg-gradient-to-tr from-pink-600 via-purple-600 to-cyan-500 p-1 shadow-neonGlow group-hover:scale-110 transition duration-300 flex items-center justify-center">
+                            <i id="giftIcon" class="fas fa-gift text-6xl text-white group-hover:rotate-12 transition"></i>
+                        </div>
+                        <div class="absolute -top-3 -right-3 px-3 py-1 rounded-full bg-yellow-400 text-slate-950 font-bold text-xs animate-bounce shadow-yellowGlow">
+                            TAP TO OPEN!
+                        </div>
+                    </div>
+
+                    <button onclick="openGiftModal()" class="btn-neon mt-4 px-7 py-3 rounded-full bg-pink-600 text-white text-xs font-bold tracking-wider uppercase shadow-neonGlow">
+                        UNBOX CHOCOLATES & SWEETS
+                    </button>
+                </div>
+
+                <div class="md:col-span-7 glass-panel p-6 sm:p-8 relative">
+                    <div class="flex items-center justify-between border-b border-cyan-500/20 pb-3 mb-4">
+                        <h4 class="font-cinzel text-lg font-bold text-cyan-300">Birthday Wish Letter</h4>
+                        <span class="text-xs text-pink-400 font-mono">CHEMISTRY SPECIAL</span>
+                    </div>
+                    <p class="text-slate-300 text-sm leading-relaxed italic mb-4">
+                        "Dear Aysha, Happy Birthday! In a universe containing 118 known chemical elements, you have your own special way of making the world around you more interesting..."
+                    </p>
+                    <button onclick="openGiftModal()" class="text-xs text-cyan-400 hover:text-cyan-300 font-bold flex items-center gap-2">
+                        <span>Open full gift box & letter</span>
+                        <i class="fas fa-expand"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Scene 8: Final Universe (Colorful Flowers & Fireworks) -->
+        <section id="scene-8" class="min-h-screen flex items-center justify-center px-4 py-12 text-center relative overflow-hidden">
+            <div class="max-w-4xl w-full glass-panel-pink p-8 md:p-12 border-pink-500/40 relative z-10">
+                <div class="text-xs font-mono text-cyan-300 uppercase tracking-widest mb-2">8. Final Universe Celebration</div>
+
+                <!-- Colorful Flower Wreath made of Neon Petals and Element Nodes -->
+                <div class="relative w-72 h-72 mx-auto my-6 flex items-center justify-center">
+                    <!-- Glowing Background Aura -->
+                    <div class="absolute inset-0 rounded-full bg-gradient-to-tr from-pink-500/20 via-yellow-400/20 to-cyan-500/20 blur-3xl animate-pulse"></div>
+
+                    <!-- Flower Wreath Element Nodes -->
+                    <div id="flowerWreathContainer" class="relative w-full h-full">
+                        <!-- Dynamic Floral Petals & Elements Injected via JS -->
+                    </div>
+
+                    <!-- Center Glowing Flower Core -->
+                    <div class="absolute w-20 h-20 rounded-full bg-slate-950 border-2 border-yellow-400 flex flex-col items-center justify-center shadow-yellowGlow z-20">
+                        <span class="text-2xl">🌸</span>
+                        <span class="text-[9px] font-mono font-bold text-pink-400"><sub></sub>AYSHA</span>
+                    </div>
+                </div>
+
+                <h1 class="font-cinzel text-3xl sm:text-5xl font-extrabold text-pink-400 text-glow-pink mb-4">
+                    HAPPY BIRTHDAY, AYSHA
+                </h1>
+                <p class="text-cyan-200 text-base sm:text-lg font-light tracking-wide mb-8">
+                    Stay curious. Keep discovering. Keep shining.
+                </p>
+
+                <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                    <button onclick="scrollToScene('scene-1')" class="btn-neon px-8 py-3.5 rounded-full bg-gradient-to-r from-pink-600 via-purple-600 to-cyan-500 text-white font-bold text-xs tracking-widest uppercase shadow-neonGlow hover:scale-105 transition">
+                        <i class="fas fa-rotate-left mr-2"></i> REPLAY THE EXPERIENCE
+                    </button>
+                </div>
+
+                <div class="mt-10 text-right text-xs font-vibes text-pink-300 text-xl">
+                    Keep smiling always..
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Fullscreen Sweets & Chocolates Modal -->
+    <div id="giftModal" class="fixed inset-0 z-50 bg-slate-950/90 backdrop-blur-md flex items-center justify-center p-4 hidden overflow-y-auto">
+        <div class="max-w-2xl w-full bg-[#140b24] border-2 border-pink-400 rounded-2xl p-6 md:p-8 shadow-neonGlow relative max-h-[90vh] overflow-y-auto">
+            <button onclick="closeGiftModal()" class="absolute top-4 right-4 w-8 h-8 rounded-full bg-pink-950 border border-pink-400 text-pink-300 flex items-center justify-center hover:bg-pink-800 transition z-30">
+                <i class="fas fa-xmark"></i>
+            </button>
+
+            <!-- Sweets Burst Tray Header -->
+            <div class="text-center mb-6">
+                <span class="text-4xl animate-bounce inline-block">🎁 🍬 🍫 🧁</span>
+                <h3 class="font-cinzel text-2xl font-bold text-yellow-300 text-glow-yellow mt-2">CHOCOLATES & SWEETS FOR AYSHA!</h3>
+                <p class="text-xs text-cyan-300">Tap on any chocolate or candy below to pop a birthday note!</p>
+            </div>
+
+            <!-- Sweets Grid -->
+            <div id="sweetsTray" class="grid grid-cols-4 sm:grid-cols-6 gap-3 mb-6 p-4 rounded-xl bg-slate-950/80 border border-pink-500/30">
+                <!-- Injected via JS -->
+            </div>
+
+            <!-- Letter Content -->
+            <div class="border border-pink-500/30 p-6 rounded-xl bg-gradient-to-b from-purple-950/40 to-slate-950/80">
+                <div class="text-pink-400 font-vibes text-3xl mb-1 text-center">Dear Aysha,</div>
+                <h4 class="font-cinzel text-lg font-bold text-cyan-300 text-center mb-4">Happy Birthday!</h4>
+
+                <div class="text-slate-200 text-sm space-y-3 leading-relaxed font-sans">
+                    <p>
+                        In a universe containing 118 known chemical elements, you have your own special way of making the world around you brighter and more interesting.
+                    </p>
+                    <p>
+                        May your days be filled with beautiful discoveries, brilliant ideas, unexpected happiness, delicious chocolates, and food spicy enough to challenge even the strongest reaction!
+                    </p>
+                    <p class="text-pink-300 font-semibold">
+                        Wishing the brilliant topper of Oxygen Batch at JUST a birthday as extraordinary as the universe itself.
+                    </p>
+                </div>
+
+                <div class="mt-6 pt-4 border-t border-pink-500/30 flex justify-between items-end">
+                    <div>
+                        <div class="text-xs text-slate-400">Department of Chemistry</div>
+                        <div class="text-sm font-bold text-cyan-300">With warmest wishes,</div>
+                        <div class="font-vibes text-xl text-pink-400">Ibnsina</div>
+                    </div>
+                    <button onclick="closeGiftModal()" class="px-5 py-2 rounded-full bg-cyan-500 text-slate-950 font-bold text-xs uppercase tracking-wider hover:bg-cyan-400">
+                        Close Box
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        
+let isAudioPlaying = false;
+
+async function toggleAudio() {
+    const music = document.getElementById("birthdayMusic");
+    const icon = document.getElementById("audioIcon");
+    const btn = document.getElementById("audioToggleBtn");
+
+    if (!music) {
+        console.error("Birthday music element was not found.");
+        return;
+    }
+
+    if (!isAudioPlaying) {
+        try {
+            await music.play();
+
+            isAudioPlaying = true;
+            icon.className = "fas fa-volume-high";
+            btn.classList.add("animate-pulse");
+        } catch (error) {
+            console.error("Unable to play music:", error);
+            alert("Music could not play. Please check the MP3 file path.");
+        }
+    } else {
+        music.pause();
+
+        isAudioPlaying = false;
+        icon.className = "fas fa-volume-xmark";
+        btn.classList.remove("animate-pulse");
+    }
+}
+
+        /* All 118 Elements Data with Custom Aysha Compliments */
+        const elementsData = [
+            { num: 1, sym: "H", name: "Hydrogen", cat: "Nonmetal", pos: [1,1], mass: "1.008", comp: "Lighthearted, uplifting, and the cosmic spark behind every great idea!" },
+            { num: 2, sym: "He", name: "Helium", cat: "Noble", pos: [1,18], mass: "4.0026", comp: "Always bringing laughter, joy, and floating good vibes wherever you go!" },
+            { num: 3, sym: "Li", name: "Lithium", cat: "Alkali", pos: [2,1], mass: "6.94", comp: "High energy and sparking instant positive reactions in everyone you meet!" },
+            { num: 4, sym: "Be", name: "Beryllium", cat: "Alkaline", pos: [2,2], mass: "9.0122", comp: "Rare, strong, and sparkling with subtle grace and intellect!" },
+            { num: 5, sym: "B", name: "Boron", cat: "Metalloid", pos: [2,13], mass: "10.81", comp: "The resilient bonding element that holds great ideas and friendships together!" },
+            { num: 6, sym: "C", name: "Carbon", cat: "Nonmetal", pos: [2,14], mass: "12.011", comp: "Versatile, priceless like a diamond, and the organic heart of life!" },
+            { num: 7, sym: "N", name: "Nitrogen", cat: "Nonmetal", pos: [2,15], mass: "14.007", comp: "Cool, composed, and filling the atmosphere with soothing presence!" },
+            { num: 8, sym: "O", name: "Oxygen", cat: "Nonmetal", pos: [2,16], mass: "15.999", comp: "Essential to everyone around you, breathing life, boundless joy, and vibrant energy into every room!" },
+            { num: 9, sym: "F", name: "Fluorine", cat: "Halogen", pos: [2,17], mass: "18.998", comp: "Super sharp focus with electric brightness!" },
+            { num: 10, sym: "Ne", name: "Neon", cat: "Noble", pos: [2,18], mass: "20.180", comp: "Glowing with radiant neon brilliance that lights up the dark!" },
+            { num: 11, sym: "Na", name: "Sodium", cat: "Alkali", pos: [3,1], mass: "22.990", comp: "Full of vitality and essential flavor for life!" },
+            { num: 12, sym: "Mg", name: "Magnesium", cat: "Alkaline", pos: [3,2], mass: "24.305", comp: "Bright spark illuminating the path of chemistry topper!" },
+            { num: 13, sym: "Al", name: "Aluminum", cat: "Post-transition", pos: [3,13], mass: "26.982", comp: "Strong yet flexible, shining under pressure!" },
+            { num: 14, sym: "Si", name: "Silicon", cat: "Metalloid", pos: [3,14], mass: "28.085", comp: "Smart, analytical, and forming the core of brilliant thinking!" },
+            { num: 15, sym: "P", name: "Phosphorus", cat: "Nonmetal", pos: [3,15], mass: "30.974", comp: "Glowing in the dark with inspiring creativity!" },
+            { num: 16, sym: "S", name: "Sulfur", cat: "Nonmetal", pos: [3,16], mass: "32.06", comp: "Adds that signature extra spicy pop to life!" },
+            { num: 17, sym: "Cl", name: "Chlorine", cat: "Halogen", pos: [3,17], mass: "35.45", comp: "Purifying every situation with clear wisdom!" },
+            { num: 18, sym: "Ar", name: "Argon", cat: "Noble", pos: [3,18], mass: "39.948", comp: "Peaceful, undisturbed, and effortlessly elegant!" },
+            { num: 19, sym: "K", name: "Potassium", cat: "Alkali", pos: [4,1], mass: "39.098", comp: "Active, energetic, and vital to keeping spirits high!" },
+            { num: 20, sym: "Ca", name: "Calcium", cat: "Alkaline", pos: [4,2], mass: "40.078", comp: "Solid foundation of kindness and moral strength!" },
+            { num: 26, sym: "Fe", name: "Iron", cat: "Transition", pos: [4,8], mass: "55.845", comp: "Unshakable strength of character and magnetic charm!" },
+            { num: 29, sym: "Cu", name: "Copper", cat: "Transition", pos: [4,11], mass: "63.546", comp: "Warm, highly conductive of happiness and good energy!" },
+            { num: 47, sym: "Ag", name: "Silver", cat: "Transition", pos: [5,11], mass: "107.87", comp: "Shining with polished brilliance and crystal clarity!" },
+            { num: 79, sym: "Au", name: "Gold", cat: "Transition", pos: [6,11], mass: "196.97", comp: "Pure, rare, timeless, and glowing with unbeatable warmth!" },
+            { num: 118, sym: "Og", name: "Oganesson", cat: "Noble", pos: [7,18], mass: "294", comp: "One of a kind, monumental, and pushing the boundaries of potential!" }
+        ];
+
+        /* Fill missing elements programmatically with compliments */
+        
+const correctElements = `
+Hydrogen|H
+Helium|He
+Lithium|Li
+Beryllium|Be
+Boron|B
+Carbon|C
+Nitrogen|N
+Oxygen|O
+Fluorine|F
+Neon|Ne
+Sodium|Na
+Magnesium|Mg
+Aluminium|Al
+Silicon|Si
+Phosphorus|P
+Sulfur|S
+Chlorine|Cl
+Argon|Ar
+Potassium|K
+Calcium|Ca
+Scandium|Sc
+Titanium|Ti
+Vanadium|V
+Chromium|Cr
+Manganese|Mn
+Iron|Fe
+Cobalt|Co
+Nickel|Ni
+Copper|Cu
+Zinc|Zn
+Gallium|Ga
+Germanium|Ge
+Arsenic|As
+Selenium|Se
+Bromine|Br
+Krypton|Kr
+Rubidium|Rb
+Strontium|Sr
+Yttrium|Y
+Zirconium|Zr
+Niobium|Nb
+Molybdenum|Mo
+Technetium|Tc
+Ruthenium|Ru
+Rhodium|Rh
+Palladium|Pd
+Silver|Ag
+Cadmium|Cd
+Indium|In
+Tin|Sn
+Antimony|Sb
+Tellurium|Te
+Iodine|I
+Xenon|Xe
+Caesium|Cs
+Barium|Ba
+Lanthanum|La
+Cerium|Ce
+Praseodymium|Pr
+Neodymium|Nd
+Promethium|Pm
+Samarium|Sm
+Europium|Eu
+Gadolinium|Gd
+Terbium|Tb
+Dysprosium|Dy
+Holmium|Ho
+Erbium|Er
+Thulium|Tm
+Ytterbium|Yb
+Lutetium|Lu
+Hafnium|Hf
+Tantalum|Ta
+Tungsten|W
+Rhenium|Re
+Osmium|Os
+Iridium|Ir
+Platinum|Pt
+Gold|Au
+Mercury|Hg
+Thallium|Tl
+Lead|Pb
+Bismuth|Bi
+Polonium|Po
+Astatine|At
+Radon|Rn
+Francium|Fr
+Radium|Ra
+Actinium|Ac
+Thorium|Th
+Protactinium|Pa
+Uranium|U
+Neptunium|Np
+Plutonium|Pu
+Americium|Am
+Curium|Cm
+Berkelium|Bk
+Californium|Cf
+Einsteinium|Es
+Fermium|Fm
+Mendelevium|Md
+Nobelium|No
+Lawrencium|Lr
+Rutherfordium|Rf
+Dubnium|Db
+Seaborgium|Sg
+Bohrium|Bh
+Hassium|Hs
+Meitnerium|Mt
+Darmstadtium|Ds
+Roentgenium|Rg
+Copernicium|Cn
+Nihonium|Nh
+Flerovium|Fl
+Moscovium|Mc
+Livermorium|Lv
+Tennessine|Ts
+Oganesson|Og
+`.trim().split('\n').map(line => {
+    const [name, sym] = line.trim().split('|');
+    return { name, sym };
+});
+
+// Correct the identity of all 118 elements.
+// Keep existing compliments and categories when available.
+for (let i = 0; i < correctElements.length; i++) {
+    const num = i + 1;
+    const correct = correctElements[i];
+    let el = elementsData.find(item => item.num === num);
+
+    if (!el) {
+        el = {
+            num,
+            cat: 'Transition',
+            mass: '—',
+            comp: `${correct.name} celebrates Aysha's curiosity, intelligence, and passion for chemistry!`
+        };
+        elementsData.push(el);
+    }
+
+    el.name = correct.name;
+    el.sym = correct.sym;
+}
+
+elementsData.sort((a, b) => a.num - b.num);
+
+        
+
+function renderPeriodicTable() {
+    const grid = document.getElementById('periodicGrid');
+    grid.innerHTML = '';
+
+    elementsData.sort((a, b) => a.num - b.num).forEach(el => {
+        const cell = document.createElement('button');
+
+        cell.type = 'button';
+        cell.className = `element-card ${getCategoryStyle(el.cat)} ${
+            el.sym === 'O' ? 'is-oxygen' : ''
+        }`;
+
+        
+cell.innerHTML = `
+    <span class="text-[8px] text-slate-400">${el.num}</span>
+    <span class="font-bold text-xs ${
+        el.sym === 'O'
+            ? 'text-pink-400 animate-pulse font-extrabold text-sm'
+            : 'text-slate-200'
+    }">${el.sym}</span>
+    <span class="text-[9px] text-slate-200 text-center leading-tight">
+        ${el.name}
+    </span>
+`;
+
+        cell.title = `${el.num} — ${el.name} (${el.sym})`;
+        cell.setAttribute(
+            'aria-label',
+            `${el.num}: ${el.name}, symbol ${el.sym}`
+        );
+
+        cell.addEventListener('click', () => selectElement(el));
+        grid.appendChild(cell);
+    });
+}
+
+        function getCategoryStyle(cat) {
+            switch(cat) {
+                case 'Alkali': return 'bg-rose-950/60 border-rose-500/50 hover:bg-rose-900';
+                case 'Alkaline': return 'bg-amber-950/60 border-amber-500/50 hover:bg-amber-900';
+                case 'Transition': return 'bg-indigo-950/60 border-indigo-500/50 hover:bg-indigo-900';
+                case 'Post-transition': return 'bg-blue-950/60 border-blue-500/50 hover:bg-blue-900';
+                case 'Metalloid': return 'bg-teal-950/60 border-teal-500/50 hover:bg-teal-900';
+                case 'Nonmetal': return 'bg-emerald-950/60 border-emerald-500/50 hover:bg-emerald-900';
+                case 'Halogen': return 'bg-cyan-950/60 border-cyan-500/50 hover:bg-cyan-900';
+                case 'Noble': return 'bg-purple-950/60 border-purple-500/50 hover:bg-purple-900';
+                default: return 'bg-slate-900 border-slate-700';
+            }
+        }
+
+        function selectElement(el) {
+            document.getElementById('inspectNumber').innerText = el.num;
+            document.getElementById('inspectNumText').innerText = el.num;
+            document.getElementById('inspectMass').innerText = el.mass;
+            document.getElementById('inspectSymbol').innerText = el.sym;
+            document.getElementById('inspectSymText').innerText = el.sym;
+            document.getElementById('inspectName').innerText = el.name;
+            document.getElementById('inspectFullName').innerText = el.name;
+            document.getElementById('inspectCategoryBadge').innerText = el.cat;
+            document.getElementById('inspectCompliment').innerText = `"${el.comp}"`;
+            document.getElementById('atomCounterBadge').innerText = `Selected: ${el.name} (#${el.num})`;
+
+            if (synth) synth.triggerAttackRelease("G5", "16n");
+        }
+
+        /* Cake Slicing & Interactive Knife Canvas Logic */
+        let cakeCanvas, cakeCtx;
+        let cuts = [];
+        let isCutting = false;
+
+        function initCakeCanvas() {
+            cakeCanvas = document.getElementById('cakeCanvas');
+            cakeCtx = cakeCanvas.getContext('2d');
+            const container = document.getElementById('cakeCanvasContainer');
+            const knife = document.getElementById('knifeTool');
+
+            cakeCanvas.width = container.clientWidth;
+            cakeCanvas.height = container.clientHeight;
+
+            container.addEventListener('mouseenter', () => knife.classList.remove('hidden'));
+            container.addEventListener('mouseleave', () => {
+                knife.classList.add('hidden');
+                isCutting = false;
+            });
+
+            container.addEventListener('mousemove', (e) => {
+                const rect = container.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+
+                knife.style.transform = `translate(${x}px, ${y}px)`;
+
+                if (isCutting && cuts.length > 0) {
+                    const currentCut = cuts[cuts.length - 1];
+                    currentCut.endX = x;
+                    currentCut.endY = y;
+                    drawCake();
+
+                    if (synth && Math.random() > 0.8) {
+                        synth.triggerAttackRelease("C6", "32n");
+                    }
+                }
+            });
+
+            container.addEventListener('mousedown', (e) => {
+                isCutting = true;
+                const rect = container.getBoundingClientRect();
+                cuts.push({
+                    startX: e.clientX - rect.left,
+                    startY: e.clientY - rect.top,
+                    endX: e.clientX - rect.left,
+                    endY: e.clientY - rect.top
+                });
+            });
+
+            container.addEventListener('mouseup', () => {
+                if(isCutting) {
+                    isCutting = false;
+                    confetti({ particleCount: 30, spread: 60, origin: { y: 0.6 } });
+                }
+            });
+
+            drawCake();
+        }
+
+        function drawCake() {
+            if (!cakeCtx) return;
+            const w = cakeCanvas.width;
+            const h = cakeCanvas.height;
+
+            cakeCtx.clearRect(0, 0, w, h);
+
+            const cx = w / 2;
+            const cy = h / 2 + 10;
+            const radius = Math.min(w, h) * 0.35;
+
+            // Cake Outer Glow
+            cakeCtx.beginPath();
+            cakeCtx.arc(cx, cy, radius + 8, 0, Math.PI * 2);
+            cakeCtx.fillStyle = 'rgba(255, 42, 141, 0.2)';
+            cakeCtx.fill();
+
+            // Main Cake Disc
+            cakeCtx.beginPath();
+            cakeCtx.arc(cx, cy, radius, 0, Math.PI * 2);
+            cakeCtx.fillStyle = '#1c0e33';
+            cakeCtx.strokeStyle = '#00f3ff';
+            cakeCtx.lineWidth = 4;
+            cakeCtx.fill();
+            cakeCtx.stroke();
+
+            // 118 Atom symbols etched on surface
+            const symbols = ["1H", "8O", "6C", "7N", "26Fe", "79Au", "47Ag", "118Og"];
+            cakeCtx.font = 'bold 13px "Fira Code"';
+            cakeCtx.fillStyle = '#ffd700';
+            cakeCtx.textAlign = 'center';
+            for (let i = 0; i < symbols.length; i++) {
+                const angle = (i / symbols.length) * Math.PI * 2;
+                const x = cx + Math.cos(angle) * (radius * 0.62);
+                const y = cy + Math.sin(angle) * (radius * 0.62);
+                cakeCtx.fillText(symbols[i], x, y);
+            }
+
+            // Center Candle Flame
+            cakeCtx.beginPath();
+            cakeCtx.arc(cx, cy, 14, 0, Math.PI * 2);
+            cakeCtx.fillStyle = '#ff2a8d';
+            cakeCtx.fill();
+
+            // Render Blade Slices
+            cuts.forEach(cut => {
+                cakeCtx.beginPath();
+                cakeCtx.moveTo(cut.startX, cut.startY);
+                cakeCtx.lineTo(cut.endX, cut.endY);
+                cakeCtx.strokeStyle = '#00f3ff';
+                cakeCtx.lineWidth = 4;
+                cakeCtx.shadowColor = '#00f3ff';
+                cakeCtx.shadowBlur = 12;
+                cakeCtx.stroke();
+                cakeCtx.shadowBlur = 0;
+            });
+        }
+
+        function resetCakeCanvas() {
+            cuts = [];
+            drawCake();
+        }
+
+        /* Sweet & Spicy Explosions */
+        function triggerSweetReaction() {
+            confetti({
+                particleCount: 100,
+                spread: 100,
+                origin: { y: 0.6 },
+                colors: ['#ff2a8d', '#00f3ff', '#ffd700']
+            });
+
+            // Floating Cupcake Emojis
+            const container = document.getElementById('reactionFxContainer');
+            for(let i=0; i<12; i++) {
+                const el = document.createElement('div');
+                el.className = 'absolute text-3xl animate-sweet pointer-events-none';
+                el.innerText = ['🧁', '🍬', '🍩', '🍫'][Math.floor(Math.random()*4)];
+                el.style.left = `${Math.random()*80 + 10}%`;
+                el.style.bottom = '20%';
+                container.appendChild(el);
+                setTimeout(() => el.remove(), 2500);
+            }
+
+            if (synth) synth.triggerAttackRelease(["C5", "E5", "G5", "C6"], "4n");
+        }
+
+        function triggerSpicyReaction() {
+            confetti({
+                particleCount: 120,
+                spread: 120,
+                origin: { y: 0.6 },
+                colors: ['#ff4500', '#ff0000', '#ffd700']
+            });
+
+            const container = document.getElementById('reactionFxContainer');
+            for(let i=0; i<12; i++) {
+                const el = document.createElement('div');
+                el.className = 'absolute text-3xl animate-sweet pointer-events-none';
+                el.innerText = ['🌶️', '🔥', '💥', '⚡'][Math.floor(Math.random()*4)];
+                el.style.left = `${Math.random()*80 + 10}%`;
+                el.style.bottom = '20%';
+                container.appendChild(el);
+                setTimeout(() => el.remove(), 2500);
+            }
+
+            if (synth) synth.triggerAttackRelease(["G3", "C4", "D#4", "G4"], "4n");
+        }
+
+        /* Gift Modal & Sweets Grid */
+        function openGiftModal() {
+            const modal = document.getElementById('giftModal');
+            modal.classList.remove('hidden');
+
+            const tray = document.getElementById('sweetsTray');
+            tray.innerHTML = '';
+            const sweetsList = ['🍫', '🍬', '🍩', '🧁', '🍭', '🍰', '🍪', '🍨', '🍓', '🎂', '🍡', '🍮'];
+
+            sweetsList.forEach((sweet, idx) => {
+                const item = document.createElement('button');
+                item.className = 'p-3 text-3xl rounded-xl bg-purple-950/80 border border-pink-400/50 hover:scale-125 transition transform shadow-neonGlow';
+                item.innerText = sweet;
+                item.onclick = () => {
+                    confetti({ particleCount: 20, spread: 40 });
+                    if(synth) synth.triggerAttackRelease("E6", "16n");
+                };
+                tray.appendChild(item);
+            });
+
+            confetti({ particleCount: 100, spread: 80, origin: { y: 0.5 } });
+            if (synth) synth.triggerAttackRelease(["G4", "B4", "D5", "F#5"], "2n");
+        }
+
+        function closeGiftModal() {
+            document.getElementById('giftModal').classList.add('hidden');
+        }
+
+        /* Render Colorful Floral Element Wreath for Scene 8 */
+        function renderFloralWreath() {
+            const container = document.getElementById('flowerWreathContainer');
+            container.innerHTML = '';
+            const flowerElements = ["8O", "1H", "6C", "26Fe", "79Au", "47Ag", "7N", "118Og", "10Ne", "29Cu", "11Na", "12Mg"];
+            const total = 12;
+
+            for(let i = 0; i < total; i++) {
+                const angle = (i / total) * Math.PI * 2;
+                const radius = 105; // px
+                const x = Math.cos(angle) * radius;
+                const y = Math.sin(angle) * radius;
+
+                const node = document.createElement('div');
+                node.className = 'absolute w-10 h-10 rounded-full bg-slate-950 border-2 border-pink-400 text-cyan-300 font-mono text-xs font-bold flex items-center justify-center shadow-neonGlow animate-pulse';
+                node.style.left = `calc(50% + ${x}px - 20px)`;
+                node.style.top = `calc(50% + ${y}px - 20px)`;
+                node.innerHTML = `<span class="text-xs">🌸</span><sub class="text-[8px] text-pink-400">${flowerElements[i]}</sub>`;
+                container.appendChild(node);
+            }
+        }
+
+        /* Continuous Background Canvas Fireworks Engine */
+        let bgCanvas, bgCtx, fireworks = [], particles = [];
+
+        function initBgCanvas() {
+            bgCanvas = document.getElementById('bgCanvas');
+            bgCtx = bgCanvas.getContext('2d');
+            resizeBgCanvas();
+            window.addEventListener('resize', resizeBgCanvas);
+
+            // Ambient background stars
+            for (let i = 0; i < 60; i++) {
+                particles.push({
+                    x: Math.random() * bgCanvas.width,
+                    y: Math.random() * bgCanvas.height,
+                    radius: Math.random() * 2 + 0.5,
+                    color: Math.random() > 0.5 ? '#00f3ff' : '#ff2a8d',
+                    vx: (Math.random() - 0.5) * 0.3,
+                    vy: (Math.random() - 0.5) * 0.3
+                });
+            }
+
+            animateBg();
+        }
+
+        function resizeBgCanvas() {
+            if (!bgCanvas) return;
+            bgCanvas.width = window.innerWidth;
+            bgCanvas.height = window.innerHeight;
+        }
+
+        function createFirework() {
+            if (Math.random() > 0.08) return;
+            const x = Math.random() * bgCanvas.width;
+            const y = Math.random() * (bgCanvas.height * 0.5);
+            const colors = ['#ff2a8d', '#00f3ff', '#ffd700', '#9d4edd', '#00ff88'];
+            const color = colors[Math.floor(Math.random() * colors.length)];
+
+            for (let i = 0; i < 25; i++) {
+                const angle = Math.random() * Math.PI * 2;
+                const speed = Math.random() * 3 + 1;
+                fireworks.push({
+                    x, y,
+                    vx: Math.cos(angle) * speed,
+                    vy: Math.sin(angle) * speed,
+                    alpha: 1,
+                    color
+                });
+            }
+        }
+
+        function animateBg() {
+            bgCtx.fillStyle = 'rgba(3, 3, 12, 0.25)';
+            bgCtx.fillRect(0, 0, bgCanvas.width, bgCanvas.height);
+
+            // Render space stars
+            particles.forEach(p => {
+                p.x += p.vx; p.y += p.vy;
+                if (p.x < 0) p.x = bgCanvas.width;
+                if (p.x > bgCanvas.width) p.x = 0;
+                if (p.y < 0) p.y = bgCanvas.height;
+                if (p.y > bgCanvas.height) p.y = 0;
+
+                bgCtx.beginPath();
+                bgCtx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+                bgCtx.fillStyle = p.color;
+                bgCtx.fill();
+            });
+
+            // Trigger and render Fireworks
+            createFirework();
+            for (let i = fireworks.length - 1; i >= 0; i--) {
+                const f = fireworks[i];
+                f.x += f.vx;
+                f.y += f.vy;
+                f.alpha -= 0.015;
+
+                if (f.alpha <= 0) {
+                    fireworks.splice(i, 1);
+                } else {
+                    bgCtx.beginPath();
+                    bgCtx.arc(f.x, f.y, 2, 0, Math.PI * 2);
+                    bgCtx.fillStyle = f.color;
+                    bgCtx.globalAlpha = f.alpha;
+                    bgCtx.fill();
+                    bgCtx.globalAlpha = 1;
+                }
+            }
+
+            requestAnimationFrame(animateBg);
+        }
+
+        function scrollToScene(sceneId) {
+            const elem = document.getElementById(sceneId);
+            if (elem) elem.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function toggleMobileMenu() {
+            document.getElementById('mobileMenu').classList.toggle('hidden');
+        }
+
+        window.onload = function() {
+            initBgCanvas();
+            renderPeriodicTable();
+            initCakeCanvas();
+            renderFloralWreath();
+        };
+    </script>
+</body>
+</html>
