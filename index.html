@@ -298,9 +298,392 @@
         font-size: 12px;
     }
 }
-    </style>
+
+/* Magical flute birthday opening */
+#fluteExperience{position:fixed;inset:0;z-index:1000;display:flex;align-items:center;justify-content:center;overflow:hidden;background:radial-gradient(ellipse at 50% 75%,#30205d 0%,#100b2b 42%,#03030c 100%);transition:opacity 1.4s ease,visibility 1.4s ease}
+#fluteExperience.dismissed{opacity:0;visibility:hidden;pointer-events:none}
+#lanternCanvas{position:absolute;inset:0;width:100%;height:100%}
+.flute-stars{position:absolute;inset:0;background-image:radial-gradient(2px 2px at 10% 20%,#fff 50%,transparent 100%),radial-gradient(1px 1px at 80% 15%,#ffdca8 50%,transparent 100%),radial-gradient(2px 2px at 65% 45%,#fff 50%,transparent 100%),radial-gradient(1px 1px at 25% 70%,#b7f7ff 50%,transparent 100%);background-size:190px 170px;opacity:.7;animation:starDrift 18s linear infinite}
+@keyframes starDrift{to{background-position:190px 170px}}
+.flute-card{position:relative;z-index:2;text-align:center;width:min(92vw,700px);padding:clamp(24px,5vw,54px);border:1px solid #f7d98a66;border-radius:30px;background:linear-gradient(145deg,#17132caa,#100a20cc);box-shadow:0 0 90px #b58aff25,inset 0 0 35px #fff1;backdrop-filter:blur(8px)}
+.flute-kicker{font:11px 'Fira Code',monospace;letter-spacing:.32em;text-transform:uppercase;color:#e8d5a0}
+.flute-title{font:clamp(2.2rem,7vw,5.4rem) 'Great Vibes',cursive;color:#ffe6a3;text-shadow:0 0 18px #ffcd67aa,0 0 48px #ffb84d55;margin:12px 0}
+.flute-subtitle{color:#e3dcf5;line-height:1.8;font-size:clamp(13px,2.5vw,17px)}
+#fluteButton{position:relative;margin:28px auto 10px;display:flex;align-items:center;justify-content:center;gap:15px;width:min(100%,360px);min-height:82px;border:1px solid #f4d99c;border-radius:22px;color:#fff4d0;background:linear-gradient(110deg,#34234d,#7b4b79,#302044);box-shadow:0 0 25px #e9bdff33,inset 0 0 18px #fff2;cursor:pointer;transition:transform .25s,box-shadow .25s}
+#fluteButton:hover{transform:translateY(-4px) scale(1.02);box-shadow:0 0 40px #e9bdff77}
+.flute-icon{font-size:38px;filter:drop-shadow(0 0 9px #ffe6a3);transform:rotate(-18deg)}
+.flute-hint{font-size:11px;color:#b8adcf;letter-spacing:.12em}
+#fluteExperience.revealed .flute-card{animation:revealGlow 1.3s ease both}
+@keyframes revealGlow{0%{transform:scale(.92);opacity:.5}100%{transform:scale(1);opacity:1}}
+#birthdayReveal{display:none;position:relative;z-index:2;margin-top:18px;font:clamp(2rem,6vw,4.7rem) 'Cinzel',serif;font-weight:900;line-height:1.2;color:#fff3bf;text-shadow:0 0 12px #ffdb70,0 0 35px #ff8bd4,0 0 70px #9b7bff;animation:birthdayPulse 2s ease-in-out infinite alternate}
+#fluteExperience.revealed #birthdayReveal{display:block}
+#fluteExperience.revealed .flute-hint{display:none}
+@keyframes birthdayPulse{to{transform:scale(1.04);filter:brightness(1.25)}}
+@media(prefers-reduced-motion:reduce){.flute-stars{animation:none}#birthdayReveal{animation:none}}
+
+    
+/* ===== VISUAL POLISH PACK: elegant cosmic birthday experience ===== */
+:root {
+  --cosmic-ink: #070714;
+  --cosmic-violet: #17102e;
+  --cosmic-pink: #ff77bd;
+  --cosmic-gold: #ffe2a0;
+  --cosmic-blue: #9beeff;
+}
+html { scroll-padding-top: 5.5rem; }
+body {
+  background:
+    radial-gradient(ellipse at 12% 12%, rgba(103, 55, 173, .18), transparent 34rem),
+    radial-gradient(ellipse at 88% 38%, rgba(255, 42, 141, .09), transparent 30rem),
+    #03030c;
+  letter-spacing: .01em;
+}
+::selection { background: rgba(255, 119, 189, .35); color: #fff; }
+section[id^="scene-"] { isolation: isolate; }
+section[id^="scene-"]::before {
+  content: "";
+  position: absolute;
+  width: min(42vw, 26rem);
+  height: min(42vw, 26rem);
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(126, 91, 255, .09), transparent 70%);
+  pointer-events: none;
+  z-index: -1;
+  top: 10%;
+  right: -8%;
+}
+.glass-panel, .glass-panel-pink {
+  position: relative;
+  overflow: hidden;
+  transition: border-color .35s ease, box-shadow .35s ease, transform .35s ease;
+}
+.glass-panel::after, .glass-panel-pink::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background: linear-gradient(135deg, rgba(255,255,255,.065), transparent 28%, transparent 72%, rgba(255,255,255,.025));
+}
+.glass-panel:hover {
+  border-color: rgba(0,243,255,.48);
+  box-shadow: 0 18px 55px rgba(0,0,0,.35), 0 0 28px rgba(0,243,255,.08);
+}
+.glass-panel-pink:hover {
+  border-color: rgba(255,119,189,.62);
+  box-shadow: 0 18px 55px rgba(0,0,0,.35), 0 0 28px rgba(255,42,141,.1);
+}
+header {
+  box-shadow: 0 8px 35px rgba(0,0,0,.28);
+  border-bottom-color: rgba(255,255,255,.1) !important;
+}
+header h1 { letter-spacing: .08em; }
+button, [role="button"] { -webkit-tap-highlight-color: transparent; }
+button:focus-visible, [tabindex]:focus-visible {
+  outline: 2px solid var(--cosmic-gold);
+  outline-offset: 4px;
+}
+.btn-neon, #fluteButton { isolation: isolate; }
+.btn-neon { box-shadow: 0 8px 28px rgba(157,78,221,.18); }
+.btn-neon:hover { filter: brightness(1.12); }
+#scene-1 .glass-panel {
+  background:
+    radial-gradient(ellipse at 50% 0%, rgba(255,119,189,.11), transparent 58%),
+    rgba(12,16,38,.82);
+}
+#scene-1 h1 { filter: drop-shadow(0 0 18px rgba(255,42,141,.24)); }
+#inspectorCard { box-shadow: 0 14px 40px rgba(0,0,0,.3), inset 0 0 24px rgba(255,42,141,.035); }
+.element-card {
+  position: relative;
+  background: linear-gradient(150deg, rgba(26,35,64,.96), rgba(10,12,30,.98));
+  border: 1px solid rgba(148,163,184,.23);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.05);
+}
+.element-card:nth-child(3n) { border-color: rgba(0,243,255,.28); }
+.element-card:nth-child(5n) { border-color: rgba(255,42,141,.28); }
+.element-card:hover, .element-card:focus-visible {
+  transform: translateY(-4px) scale(1.055);
+  border-color: var(--cosmic-gold);
+  box-shadow: 0 0 18px rgba(255,215,0,.18), 0 8px 20px rgba(0,0,0,.28);
+}
+.element-card.is-oxygen {
+  background: linear-gradient(145deg, rgba(114,22,78,.95), rgba(29,13,48,.98));
+  border-color: #ff77bd;
+  box-shadow: 0 0 0 1px rgba(255,119,189,.18), 0 0 22px rgba(255,42,141,.24);
+}
+#cakeCanvasContainer { box-shadow: 0 20px 55px rgba(0,0,0,.35), 0 0 28px rgba(0,243,255,.08); }
+#giftBoxContainer:focus-visible { outline: 2px solid var(--cosmic-gold); outline-offset: 7px; }
+#giftModal > div { box-shadow: 0 25px 90px rgba(0,0,0,.65), 0 0 45px rgba(255,42,141,.13); }
+#sweetsTray button, #sweetsTray .sweet-item { transition: transform .22s ease, filter .22s ease; }
+#sweetsTray button:hover, #sweetsTray .sweet-item:hover { transform: translateY(-5px) rotate(-2deg); filter: brightness(1.15); }
+#flowerWreathContainer { filter: drop-shadow(0 0 16px rgba(255,119,189,.13)); }
+#birthdayReveal { letter-spacing: .045em; }
+.flute-card {
+  border-color: rgba(255,226,160,.38);
+  box-shadow: 0 25px 90px rgba(0,0,0,.35), 0 0 75px rgba(181,138,255,.12), inset 0 0 35px rgba(255,255,255,.035);
+}
+.flute-kicker { letter-spacing: .26em; }
+#fluteButton { animation: fluteBreathe 3s ease-in-out infinite; }
+#fluteButton:disabled { animation: none; cursor: default; }
+@keyframes fluteBreathe {
+  0%, 100% { box-shadow: 0 0 22px rgba(233,189,255,.16), inset 0 0 18px rgba(255,255,255,.08); }
+  50% { box-shadow: 0 0 34px rgba(233,189,255,.32), inset 0 0 22px rgba(255,255,255,.12); }
+}
+.reveal-on-scroll { opacity: 0; transform: translateY(22px); transition: opacity .7s ease, transform .7s cubic-bezier(.2,.75,.2,1); }
+.reveal-on-scroll.is-visible { opacity: 1; transform: translateY(0); }
+@media (max-width: 640px) {
+  .glass-panel, .glass-panel-pink { border-radius: 1.1rem; }
+  #scene-1 .glass-panel { padding: 2rem 1.15rem; }
+  #fluteButton { min-height: 76px; gap: 10px; padding: 12px; }
+  .flute-kicker { letter-spacing: .16em; }
+  #birthdayReveal { font-size: clamp(1.8rem, 9vw, 3rem); }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: .01ms !important;
+  }
+  .reveal-on-scroll { opacity: 1; transform: none; }
+}
+
+    
+/* ===== REFINED PERIODIC TABLE: jewel-toned tiles, crisp hierarchy, smooth motion ===== */
+#periodicGrid { gap: clamp(3px, .42vw, 7px); padding: 7px 4px 14px; perspective: 900px; }
+.element-card {
+  --tile-accent: #7dd3fc; position: relative; isolation: isolate; min-height: 76px;
+  padding: 7px 5px 6px; gap: 4px; align-items: stretch; justify-content: flex-start;
+  border: 1px solid color-mix(in srgb, var(--tile-accent) 34%, transparent); border-radius: 11px;
+  background: radial-gradient(circle at 50% -10%, color-mix(in srgb, var(--tile-accent) 16%, transparent), transparent 66%),
+    linear-gradient(155deg, rgba(25,31,58,.98), rgba(8,11,27,.99));
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.08), 0 4px 10px rgba(0,0,0,.16);
+  transform: translateZ(0); transition: transform .28s cubic-bezier(.2,.8,.2,1), border-color .28s ease,
+    box-shadow .28s ease, background .28s ease, filter .28s ease; will-change: transform;
+}
+.element-card::before {
+  content:""; position:absolute; z-index:-1; inset:0; border-radius:inherit;
+  background:linear-gradient(135deg,rgba(255,255,255,.09),transparent 42%,rgba(255,255,255,.015));
+  opacity:.72; transition:opacity .28s ease; pointer-events:none;
+}
+.element-card::after {
+  content:""; position:absolute; left:9px; right:9px; top:0; height:2px; border-radius:0 0 6px 6px;
+  background:var(--tile-accent); opacity:.78; box-shadow:0 0 10px color-mix(in srgb,var(--tile-accent) 55%,transparent);
+}
+.element-card:nth-child(18n + 1), .element-card:nth-child(18n + 2) { --tile-accent:#a78bfa; }
+.element-card:nth-child(18n + 3), .element-card:nth-child(18n + 4) { --tile-accent:#fbbf24; }
+.element-card:nth-child(18n + 5), .element-card:nth-child(18n + 6) { --tile-accent:#34d399; }
+.element-card:nth-child(18n + 7), .element-card:nth-child(18n + 8) { --tile-accent:#22d3ee; }
+.element-card:nth-child(18n + 9), .element-card:nth-child(18n + 10) { --tile-accent:#fb7185; }
+.element-card:nth-child(18n + 11), .element-card:nth-child(18n + 12) { --tile-accent:#60a5fa; }
+.element-card:nth-child(18n + 13), .element-card:nth-child(18n + 14) { --tile-accent:#c084fc; }
+.element-card:nth-child(18n + 15), .element-card:nth-child(18n + 16) { --tile-accent:#2dd4bf; }
+.element-card:nth-child(18n + 17), .element-card:nth-child(18n + 18) { --tile-accent:#f0abfc; }
+.element-number { align-self:flex-start; color:#9ba9c6; font:600 9px/1 'Fira Code',monospace; letter-spacing:.02em; }
+.element-symbol { color:#f8fafc; font:800 clamp(14px,1.2vw,18px)/1.1 'Fira Code',monospace;
+  text-shadow:0 1px 8px color-mix(in srgb,var(--tile-accent) 24%,transparent); transition:color .25s ease,text-shadow .25s ease,transform .25s ease; }
+.element-name { color:#d8e0f2; font-size:clamp(7px,.66vw,9px); line-height:1.15; min-height:20px;
+  overflow-wrap:anywhere; white-space:normal; font-weight:600; }
+.element-category { display:block; margin-top:auto; color:var(--tile-accent); opacity:.86;
+  font:500 7px/1.05 'Fira Code',monospace; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.element-card:hover, .element-card:focus-visible {
+  z-index:4; transform:translateY(-5px) scale(1.045); border-color:var(--tile-accent);
+  background:radial-gradient(circle at 50% 0%,color-mix(in srgb,var(--tile-accent) 24%,transparent),transparent 68%),
+    linear-gradient(155deg,rgba(31,39,71,.99),rgba(9,12,29,1));
+  box-shadow:0 12px 24px rgba(0,0,0,.32),0 0 18px color-mix(in srgb,var(--tile-accent) 20%,transparent),inset 0 1px 0 rgba(255,255,255,.14);
+}
+.element-card:hover::before { opacity:1; }
+.element-card:hover .element-symbol { transform:translateY(-1px) scale(1.08); color:var(--tile-accent); }
+.element-card.is-selected { z-index:3; border-color:#fff0b3; box-shadow:0 0 0 1px rgba(255,240,179,.36),0 0 20px color-mix(in srgb,var(--tile-accent) 30%,transparent); }
+.element-card.is-selected::after { height:3px; opacity:1; }
+.element-card.is-oxygen {
+  --tile-accent:#ff78c5; border-color:#ff8dce;
+  background:radial-gradient(circle at 50% 35%,rgba(255,74,174,.27),transparent 68%),linear-gradient(155deg,rgba(91,22,82,.98),rgba(26,12,48,.99));
+  box-shadow:0 0 0 1px rgba(255,141,206,.3),0 0 22px rgba(255,55,163,.32),inset 0 0 20px rgba(255,115,202,.09);
+  animation:oxygenAura 2.8s ease-in-out infinite;
+}
+.element-card.is-oxygen::after { left:6px; right:6px; height:3px; background:linear-gradient(90deg,#ff9ad7,#fff0b5,#ff4ba8); opacity:1; }
+.element-card.is-oxygen .element-number { color:#ffd1eb; }
+.element-card.is-oxygen .element-symbol { color:#ffb7e0; font-size:clamp(17px,1.45vw,22px); text-shadow:0 0 9px rgba(255,119,189,.7),0 0 22px rgba(255,42,141,.5); }
+.element-card.is-oxygen .element-name { color:#fff0fa; }
+.element-card.is-oxygen .element-category { color:#ffd0eb; }
+.element-card.is-oxygen:hover, .element-card.is-oxygen:focus-visible {
+  transform:translateY(-6px) scale(1.075); box-shadow:0 0 0 2px rgba(255,177,221,.3),0 0 32px rgba(255,42,141,.48),0 14px 24px rgba(0,0,0,.3);
+}
+@keyframes oxygenAura {
+  0%,100% { box-shadow:0 0 0 1px rgba(255,141,206,.22),0 0 17px rgba(255,55,163,.22),inset 0 0 18px rgba(255,115,202,.07); }
+  50% { box-shadow:0 0 0 1px rgba(255,141,206,.42),0 0 28px rgba(255,55,163,.42),inset 0 0 24px rgba(255,115,202,.13); }
+}
+#inspectorCard { transition:border-color .3s ease,box-shadow .3s ease; }
+#inspectorCard.inspector-update { animation:inspectorBloom .48s cubic-bezier(.2,.8,.2,1); }
+@keyframes inspectorBloom { 0%{transform:translateY(4px) scale(.992);filter:brightness(.9)} 65%{transform:translateY(-2px) scale(1.006);filter:brightness(1.13)} 100%{transform:translateY(0) scale(1);filter:brightness(1)} }
+@media(max-width:900px) { .element-card{min-height:70px}.element-name{font-size:8px}.element-category{font-size:6px} }
+@media(max-width:480px) { .element-card{min-height:67px;padding:7px 3px 5px;border-radius:8px}.element-symbol{font-size:13px}.element-name{font-size:7px;min-height:18px}.element-category{font-size:6px} }
+@media(prefers-reduced-motion:reduce) { .element-card,.element-card::before,.element-symbol,#inspectorCard{transition:none!important;animation:none!important} }
+
+
+/* ===== BUG FIX + GRAND ELEMENT CELEBRATION ===== */
+html { scroll-behavior: smooth; }
+body { overflow-x: hidden; }
+#scene-2, #scene-2 .glass-panel { scroll-margin-top: 82px; }
+#scene-2 .glass-panel.reveal-on-scroll { opacity: 1; transform: none; }
+#magicCelebrationLayer {
+  position: fixed; inset: 0; z-index: 1200; pointer-events: none; overflow: hidden;
+}
+.magic-compliment-toast {
+  position: fixed; z-index: 1201; left: 50%; bottom: clamp(18px, 5vh, 48px);
+  width: min(92vw, 620px); transform: translate(-50%, 24px) scale(.96);
+  padding: 17px 22px; border-radius: 22px; text-align: center;
+  color: #fff7fd; border: 1px solid rgba(255,190,230,.72);
+  background: linear-gradient(135deg, rgba(32,13,54,.94), rgba(66,19,70,.93), rgba(14,35,63,.94));
+  box-shadow: 0 0 30px rgba(255,91,190,.34), inset 0 0 24px rgba(255,255,255,.055);
+  backdrop-filter: blur(14px); opacity: 0; animation: complimentToastIn .55s cubic-bezier(.2,.85,.2,1) forwards;
+}
+.magic-compliment-toast .magic-toast-title {
+  color: #ffd4ee; font: 700 11px/1.4 'Fira Code', monospace; letter-spacing: .16em;
+  text-transform: uppercase; margin-bottom: 7px;
+}
+.magic-compliment-toast .magic-toast-message {
+  font-size: clamp(14px, 2.4vw, 19px); line-height: 1.5; font-weight: 600;
+}
+.magic-compliment-toast .magic-toast-flourish { font-size: 20px; margin-bottom: 5px; }
+@keyframes complimentToastIn {
+  0% { opacity: 0; transform: translate(-50%, 24px) scale(.96); }
+  70% { opacity: 1; transform: translate(-50%, -3px) scale(1.01); }
+  100% { opacity: 1; transform: translate(-50%, 0) scale(1); }
+}
+.magic-floating-icon {
+  position: fixed; left: var(--x); top: var(--y); font-size: var(--size);
+  opacity: 0; filter: drop-shadow(0 0 8px rgba(255,205,242,.8));
+  animation: magicIconFlight var(--duration) ease-out forwards;
+  transform: translate(-50%,-50%) rotate(0deg);
+}
+@keyframes magicIconFlight {
+  0% { opacity: 0; transform: translate(-50%,-30%) scale(.45) rotate(-20deg); }
+  12% { opacity: 1; }
+  100% { opacity: 0; transform: translate(calc(-50% + var(--dx)), calc(-50% + var(--dy))) scale(1.35) rotate(var(--rot)); }
+}
+@media (max-width: 600px) {
+  .magic-compliment-toast { bottom: 14px; padding: 14px 15px; border-radius: 17px; }
+  .magic-compliment-toast .magic-toast-title { font-size: 9px; }
+}
+
+
+/* ===== FLUTE-ACTIVATED COSMIC LANTERN MAGIC ===== */
+#lanternCanvas, #magicCosmosCanvas {
+  position: fixed; inset: 0; width: 100%; height: 100%;
+  pointer-events: none; opacity: 0; transition: opacity 1.8s ease;
+}
+body.cosmic-magic-awake #lanternCanvas,
+body.cosmic-magic-awake #magicCosmosCanvas { opacity: 1; }
+#magicCosmosCanvas { z-index: 1; mix-blend-mode: screen; }
+#lanternCanvas { z-index: 2; }
+#magicCelebrationLayer { z-index: 1200; }
+.cosmic-magic-awake .magic-cosmic-crystal {
+  animation-play-state: running;
+}
+.magic-cosmic-crystal {
+  position: fixed; z-index: 3; pointer-events: none; opacity: 0;
+  left: var(--cx); top: var(--cy); width: var(--cw); height: var(--ch);
+  transform: translate(-50%,-50%) rotate(var(--cr));
+  filter: drop-shadow(0 0 9px var(--cc));
+  animation: crystalDrift var(--cd) ease-in-out infinite alternate;
+  animation-play-state: paused;
+}
+.magic-cosmic-crystal::before, .magic-cosmic-crystal::after {
+  content:""; position:absolute; inset:0;
+  clip-path: polygon(50% 0, 78% 22%, 100% 50%, 72% 80%, 50% 100%, 28% 80%, 0 50%, 24% 22%);
+  background: linear-gradient(145deg, rgba(255,255,255,.92), var(--cc) 38%, rgba(94,73,255,.18) 78%, rgba(255,255,255,.7));
+}
+.magic-cosmic-crystal::after {
+  inset: 16% 25%; opacity:.8;
+  clip-path: polygon(50% 0,100% 100%,0 100%);
+  background: linear-gradient(160deg,rgba(255,255,255,.95),var(--cc));
+}
+body.cosmic-magic-awake .magic-cosmic-crystal { opacity: var(--co); }
+@keyframes crystalDrift {
+  0% { transform: translate(-50%,-46%) rotate(var(--cr)) scale(.9); }
+  100% { transform: translate(-50%,-58%) rotate(calc(var(--cr) + 18deg)) scale(1.08); }
+}
+.magic-cosmic-orb {
+  position: fixed; z-index: 1; width: var(--os); height: var(--os); border-radius: 50%;
+  left: var(--ox); top: var(--oy); pointer-events:none; opacity:0;
+  background: radial-gradient(circle at 32% 28%, #fff 0 3%, var(--oc) 22%, transparent 72%);
+  filter: drop-shadow(0 0 12px var(--oc));
+}
+body.cosmic-magic-awake .magic-cosmic-orb {
+  opacity: var(--oo); animation: cosmicOrbFloat var(--od) ease-in-out infinite alternate;
+}
+@keyframes cosmicOrbFloat {
+  0% { transform: translate3d(-10px, 12px, 0) scale(.75); }
+  100% { transform: translate3d(16px, -24px, 0) scale(1.2); }
+}
+@media(prefers-reduced-motion:reduce) {
+  .magic-cosmic-crystal,.magic-cosmic-orb { animation:none!important; }
+}
+
+
+/* ===== FESTIVAL FLOURISHES: large lanterns, flowers, emojis and magic glyphs ===== */
+#magicCelebrationLayer { overflow:hidden; }
+.magic-sky-glyph {
+  position:fixed; z-index:4; left:var(--gx); top:110vh; pointer-events:none;
+  font-size:var(--gs); line-height:1; opacity:0;
+  filter:drop-shadow(0 0 10px var(--glow));
+  animation: glyphAscend var(--gd) cubic-bezier(.2,.65,.25,1) forwards;
+  will-change:transform,opacity;
+}
+@keyframes glyphAscend {
+  0% { opacity:0; transform:translate3d(0,0,0) rotate(0) scale(.55); }
+  12% { opacity:.98; }
+  82% { opacity:.9; }
+  100% { opacity:0; transform:translate3d(var(--gx-drift),-125vh,0) rotate(var(--gr)) scale(1.25); }
+}
+#scene-3 .glass-panel-pink {
+  border:1px solid rgba(255,151,218,.75);
+  box-shadow:0 0 30px rgba(255,71,179,.17), inset 0 0 32px rgba(180,108,255,.08);
+  background:radial-gradient(ellipse at 50% 0%,rgba(255,120,211,.12),transparent 65%),rgba(13,8,31,.84);
+}
+#scene-3 .flame { filter:drop-shadow(0 0 7px #ffe76e) drop-shadow(0 0 14px #ff4fc8); }
+#scene-3 .rounded-t-xl, #scene-3 .rounded-b-2xl {
+  position:relative; overflow:hidden;
+}
+#scene-3 .rounded-t-xl::after, #scene-3 .rounded-b-2xl::after {
+  content:""; position:absolute; inset:0; pointer-events:none;
+  background:linear-gradient(110deg,transparent 10%,rgba(255,255,255,.16) 28%,transparent 44%,rgba(255,222,150,.1) 72%,transparent 88%);
+}
+#cakeCanvasContainer {
+  border-color:rgba(255,132,218,.9)!important;
+  box-shadow:0 0 28px rgba(255,80,186,.22),0 0 70px rgba(127,91,255,.12),inset 0 0 24px rgba(255,255,255,.05)!important;
+}
+#knifeTool { filter:drop-shadow(0 0 10px #ffe4a0) drop-shadow(0 0 20px #ff4fc8); }
+@media(prefers-reduced-motion:reduce) {
+  .magic-sky-glyph { animation-duration:1ms!important; }
+}
+
+</style>
 </head>
 <body class="relative min-h-screen">
+
+    <!-- Magical flute birthday surprise: tap the flute to awaken the sky -->
+    <div id="fluteExperience" role="dialog" aria-label="Magical birthday surprise for Aysha">
+        <canvas id="lanternCanvas" aria-hidden="true"></canvas>
+        <div class="flute-stars"></div>
+        <div class="flute-card">
+            <div class="flute-kicker">A little magic, just for you</div>
+            <h1 class="flute-title">Remember this day?</h1>
+            <p class="flute-subtitle">Some wishes are too beautiful to be spoken.<br>They must be played into the night...</p>
+            <button id="fluteButton" type="button" onclick="playBirthdayMagic()">
+                <span class="flute-icon">🎶</span>
+                <span style="text-align:left"><strong style="display:block;letter-spacing:.12em">TOUCH THE MAGIC FLUTE</strong><small style="display:block;margin-top:6px;color:#d9c9ee">Let the stars hear your birthday wish</small></span>
+            </button>
+            <div class="flute-hint">TAP THE FLUTE · TURN ON YOUR SOUND</div>
+            <div id="birthdayReveal">HAPPY BIRTHDAY<br>AYSHA ✨</div>
+        </div>
+    </div>
+
+
+    <div id="magicCelebrationLayer" aria-live="polite" aria-atomic="true"></div>
+<canvas id="magicCosmosCanvas" aria-hidden="true"></canvas>
 
     <!-- Background Canvas for Space Particles & Fireworks -->
     <canvas id="bgCanvas" class="fixed top-0 left-0 w-full h-full pointer-events-none z-0"></canvas>
@@ -335,16 +718,7 @@
     </header>
 
     <!-- Mobile Drawer -->
-    <div id="mobileMenu" class="fixed inset-x-0 top-14 bg-slate-950/95 border-b border-cyan-500/30 z-40 p-4 hidden lg:hidden flex-col gap-2 text-sm">
-        <button onclick="scrollToScene('scene-1'); toggleMobileMenu()" class="text-left py-2 px-3 hover:bg-cyan-950/50 rounded text-cyan-300">1. Opening Scene</button>
-        <button onclick="scrollToScene('scene-2'); toggleMobileMenu()" class="text-left py-2 px-3 hover:bg-cyan-950/50 rounded text-cyan-300">2. Periodic Table (Compliments)</button>
-        <button onclick="scrollToScene('scene-3'); toggleMobileMenu()" class="text-left py-2 px-3 hover:bg-cyan-950/50 rounded text-cyan-300">3. 118 Elements Cake</button>
-        <button onclick="scrollToScene('scene-4'); toggleMobileMenu()" class="text-left py-2 px-3 hover:bg-cyan-950/50 rounded text-cyan-300">4. Cut the Cake (Knife Tool)</button>
-        <button onclick="scrollToScene('scene-5'); toggleMobileMenu()" class="text-left py-2 px-3 hover:bg-cyan-950/50 rounded text-cyan-300">5. Sweet & Spicy Celebration</button>
-        <button onclick="scrollToScene('scene-6'); toggleMobileMenu()" class="text-left py-2 px-3 hover:bg-cyan-950/50 rounded text-cyan-300">6. For to the Chemist</button>
-        <button onclick="scrollToScene('scene-7'); toggleMobileMenu()" class="text-left py-2 px-3 hover:bg-cyan-950/50 rounded text-cyan-300">7. Secret Sweets Gift</button>
-        <button onclick="scrollToScene('scene-8'); toggleMobileMenu()" class="text-left py-2 px-3 hover:bg-cyan-950/50 rounded text-cyan-300">8. Floral Wreath & Fireworks</button>
-    </div>
+    
 
     <main class="relative z-10 pt-16">
 
@@ -363,10 +737,10 @@
                 </h1>
 
                 <h2 class="font-cinzel text-xl md:text-3xl font-bold tracking-widest text-slate-100 uppercase mb-10">
-                    Happy Birthday, Aysha!
+                   Aysha + Birthday + Happiness + Dreams → A beautiful year of extraordinary reactions! 🧬 May your happiness approach infinity!
                 </h2>
 
-                <button onclick="scrollToScene('scene-2')" class="btn-neon px-8 py-4 rounded-full bg-gradient-to-r from-pink-600 via-purple-600 to-cyan-500 text-white font-bold text-sm tracking-widest uppercase shadow-neonGlow hover:scale-105 transition transform active:scale-95 inline-flex items-center space-x-3">
+                <button onclick="enterChemicalUniverse()" class="btn-neon px-8 py-4 rounded-full bg-gradient-to-r from-pink-600 via-purple-600 to-cyan-500 text-white font-bold text-sm tracking-widest uppercase shadow-neonGlow hover:scale-105 transition transform active:scale-95 inline-flex items-center space-x-3">
                     <span>ENTER YOUR CHEMICAL UNIVERSE</span>
                     <i class="fas fa-arrow-right"></i>
                 </button>
@@ -379,7 +753,7 @@
                 <div class="flex flex-col sm:flex-row sm:items-center justify-between mb-4 border-b border-cyan-500/20 pb-3 gap-2">
                     <div>
                         <h2 class="font-cinzel text-lg sm:text-2xl font-bold text-cyan-300 flex items-center gap-2">
-                            <i class="fas fa-atom text-pink-500"></i> 2. Periodic Table of Aysha
+                            <i class="fas fa-atom text-pink-500"></i> 
                         </h2>
                         <p class="text-xs text-slate-400">Tap or click ANY of the 118 atoms to reveal a unique personal compliment!</p>
                     </div>
@@ -433,8 +807,8 @@
                 <!-- Visual Tiered Cake Display -->
                 <div class="lg:col-span-7 glass-panel-pink p-6 relative flex flex-col items-center justify-center min-h-[460px]">
                     <div class="text-center mb-6">
-                        <div class="text-xs text-cyan-300 tracking-widest font-mono uppercase">3. 118 Elements Cake Structure</div>
-                        <h3 class="text-2xl md:text-3xl font-bold font-cinzel text-pink-400 text-glow-pink">HAPPY BIRTHDAY AYSHA</h3>
+                        <div class="text-xs text-cyan-300 tracking-widest font-mono uppercase">close Your Eyes</div>
+                        <h3 class="text-2xl md:text-3xl font-bold font-cinzel text-pink-400 text-glow-pink">Surprise!</h3>
                     </div>
 
                     <!-- Tiered Cake Visual representing 118 atoms -->
@@ -484,7 +858,7 @@
 
                 <div class="lg:col-span-5 space-y-6">
                     <div class="inline-block px-3 py-1 rounded-full bg-cyan-950/80 border border-cyan-400/40 text-cyan-300 text-xs font-semibold">
-                        3. 118 Elements Cake
+                        
                     </div>
                     <h2 class="font-cinzel text-3xl md:text-4xl font-bold text-white leading-tight">
                         118 Elements.<br/>
@@ -506,7 +880,7 @@
         <section id="scene-4" class="min-h-screen flex items-center justify-center px-4 py-12">
             <div class="max-w-5xl w-full glass-panel p-6 border-pink-500/30 flex flex-col items-center">
                 <div class="text-center max-w-2xl mb-4">
-                    <div class="text-pink-400 font-mono text-xs tracking-widest uppercase mb-1">4. Cut the Cake (Interactive)</div>
+                    <div class="text-pink-400 font-mono text-xs tracking-widest uppercase mb-1"></div>
                     <h2 class="font-cinzel text-2xl md:text-3xl font-bold text-white mb-2">Time to Cut Your Elemental Cake!</h2>
                     <p class="text-cyan-200 text-sm">
                         Hover or touch to wield the <span class="text-pink-400 font-bold">Glowing Neon Chemical Knife</span>. Drag across the cake to slice through the 118 elements with spark reactions!
@@ -549,7 +923,7 @@
                 <div id="reactionFxContainer" class="pointer-events-none absolute inset-0 z-30 overflow-hidden"></div>
 
                 <div class="text-center mb-8">
-                    <div class="text-cyan-400 text-xs font-mono uppercase tracking-widest">5. Dual Reaction Chamber</div>
+                    <div class="text-cyan-400 text-xs font-mono uppercase tracking-widest"></div>
                     <h2 class="font-cinzel text-3xl md:text-4xl font-bold text-white">Sweet and Spicy Celebration</h2>
                 </div>
 
@@ -593,7 +967,7 @@
         <!-- Scene 6: A Tribute to a Brilliant Chemist -->
         <section id="scene-6" class="min-h-screen flex items-center justify-center px-4 py-12">
             <div class="max-w-6xl w-full glass-panel p-6 md:p-10 border-cyan-400/40">
-                <div class="text-cyan-400 text-xs font-mono uppercase tracking-widest mb-1">6. Academic & Personal Dedication</div>
+                <div class="text-cyan-400 text-xs font-mono uppercase tracking-widest mb-1">Academic & Personal Dedication</div>
                 <h2 class="font-cinzel text-2xl md:text-3xl font-bold text-white mb-8">For a Brilliant Chemist</h2>
 
                 <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
@@ -649,7 +1023,7 @@
         <section id="scene-7" class="min-h-screen flex items-center justify-center px-4 py-12">
             <div class="max-w-5xl w-full grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
                 <div class="md:col-span-5 glass-panel-pink p-8 text-center flex flex-col items-center justify-center min-h-[400px]">
-                    <div class="text-xs font-mono text-pink-400 uppercase tracking-widest mb-2">7. The Secret Birthday Gift</div>
+                    <div class="text-xs font-mono text-pink-400 uppercase tracking-widest mb-2">Wait...</div>
                     <h3 class="font-cinzel text-xl font-bold text-white mb-2">One last experiment remains...</h3>
                     <p class="text-xs text-slate-300 mb-6">A special box filled with sweets & chocolates!</p>
 
@@ -686,7 +1060,7 @@
         <!-- Scene 8: Final Universe (Colorful Flowers & Fireworks) -->
         <section id="scene-8" class="min-h-screen flex items-center justify-center px-4 py-12 text-center relative overflow-hidden">
             <div class="max-w-4xl w-full glass-panel-pink p-8 md:p-12 border-pink-500/40 relative z-10">
-                <div class="text-xs font-mono text-cyan-300 uppercase tracking-widest mb-2">8. Final Universe Celebration</div>
+                <div class="text-xs font-mono text-cyan-300 uppercase tracking-widest mb-2"> Final Universe Celebration</div>
 
                 <!-- Colorful Flower Wreath made of Neon Petals and Element Nodes -->
                 <div class="relative w-72 h-72 mx-auto my-6 flex items-center justify-center">
@@ -709,7 +1083,7 @@
                     HAPPY BIRTHDAY, AYSHA
                 </h1>
                 <p class="text-cyan-200 text-base sm:text-lg font-light tracking-wide mb-8">
-                    Stay curious. Keep discovering. Keep shining.
+                    Stay curious. Keep discovering. Keep shining.May your happiness form covalent bonds with your dreams, your success become chemically stable, and your beautiful moments never undergo decomposition. Happy Birthday!
                 </p>
 
                 <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
@@ -988,6 +1362,10 @@ for (let i = 0; i < correctElements.length; i++) {
 
 elementsData.sort((a, b) => a.num - b.num);
 
+        // Give every element its own distinct, numbered birthday compliment.
+        const uniqueCompliments = ["Bright Beginnings: You remind everyone that even the smallest beginning can grow into something extraordinary.", "Calm Confidence: Your quiet confidence makes every room feel a little more peaceful.", "Sparkling Energy: Your energy turns ordinary moments into exciting new possibilities.", "Steady Grace: You show that true strength can be gentle, graceful, and dependable.", "Creative Resilience: You bend with challenges without ever losing your brilliant sense of self.", "Diamond-Worthy Depth: Your depth and versatility make you precious in far more ways than one.", "Thoughtful Balance: You bring a refreshing balance of calm thought and wonderful imagination.", "Life-Giving Warmth: Your presence brings warmth and life to the people lucky enough to know you.", "Fearless Brilliance: You have the courage to stand out and the brilliance to make it count.", "Radiant Originality: Your originality glows so naturally that it never needs to ask for attention.", "Vibrant Spirit: You add the perfect spark of enthusiasm to even the simplest day.", "Inner Fire: Your inner fire helps you keep shining when a challenge appears.", "Adaptable Strength: You adapt beautifully while staying true to what makes you special.", "Clear-Minded Wisdom: Your thoughtful mind finds patterns and possibilities others might miss.", "Imaginative Light: Your imagination makes even familiar things feel full of wonder.", "Memorable Character: You add a distinctive little magic that makes every moment more memorable.", "Refreshing Honesty: Your honesty brings clarity and trust wherever you go.", "Effortless Composure: Your composure is elegant, reassuring, and quietly powerful.", "Uplifting Momentum: You inspire people to move forward with more hope and enthusiasm.", "Grounded Kindness: Your kindness gives others a safe, steady place to stand.", "Adventurous Curiosity: Your curiosity makes the world feel bigger and more exciting.", "Bold Determination: Your determination keeps your dreams moving even when the path gets difficult.", "Inventive Thinking: You turn unusual ideas into opportunities worth exploring.", "Loyal Warmth: Your loyalty makes the people around you feel genuinely valued.", "Magnetic Charm: Your charm draws people in without ever needing to try too hard.", "Unshakable Courage: You face difficult moments with a strength that deserves to be celebrated.", "Generous Spirit: Your generosity makes success feel even sweeter when it is shared.", "Quiet Brilliance: You prove that the brightest minds do not always need to be the loudest.", "Heartfelt Connection: You have a gift for making people feel seen, heard, and included.", "Balanced Ambition: You pair ambition with thoughtfulness in a wonderfully rare way.", "Playful Optimism: Your optimism adds a cheerful twist to the most ordinary moments.", "Patient Intelligence: You take time to understand things deeply, and that patience is a superpower.", "Independent Thinking: You have the confidence to think for yourself and the wisdom to keep learning.", "Grace Under Pressure: You keep your grace when life gets complicated, and that is remarkable.", "Joyful Confidence: Your confidence feels inviting because it leaves room for others to shine too.", "Original Perspective: You see fresh possibilities where other people see the usual routine.", "Steady Optimism: Your hope is practical, persistent, and wonderfully contagious.", "Natural Elegance: Your elegance comes from the way you treat people, not just the way you look.", "Creative Patience: You let good ideas grow instead of rushing past their potential.", "Determined Focus: When something matters to you, your focus becomes a force for good.", "Quiet Ambition: Your goals have substance, and your steady effort gives them wings.", "Reliable Brilliance: People can count on you to bring both intelligence and care to the task.", "Thoughtful Originality: Your ideas feel fresh because they come from a mind that pays attention.", "Polished Confidence: You make excellence look natural through preparation and persistence.", "Open-Hearted Curiosity: You explore new ideas with an open mind and a generous heart.", "Gracious Strength: You can be powerful without being harsh and confident without being unkind.", "Timeless Style: Your personal style shines because it reflects a personality all your own.", "Clear Perspective: You help turn confusion into clarity with your thoughtful way of seeing things.", "Gentle Determination: Your gentle approach never makes your determination any less powerful.", "Clever Adaptability: You find smart ways through change while keeping your spark intact.", "Bright Individuality: You make being yourself look like the most wonderful choice of all.", "Creative Courage: You are willing to try, learn, and grow—and that takes real courage.", "Thoughtful Ambition: You dream with purpose and put care into the steps that bring those dreams closer.", "Lasting Influence: The good you do stays with people long after a moment has passed.", "Warm Intelligence: Your intelligence feels even brighter because you pair it with warmth.", "Calm Leadership: You lead by making people feel capable, included, and ready to try.", "Distinctive Charm: There is something unmistakably you about the way you brighten a day.", "Resilient Hope: You can find a hopeful next step even when the first plan changes.", "Generous Imagination: Your imagination gives other people permission to dream bigger too.", "Focused Creativity: You know how to give your creativity direction without dimming its magic.", "Honest Confidence: You do not need to pretend to be perfect to be genuinely impressive.", "Thoughtful Courage: You have the courage to care deeply and the strength to keep showing up.", "Refreshing Perspective: Your point of view adds a welcome new angle to every conversation.", "Steadfast Kindness: Your kindness is consistent, and that makes it especially meaningful.", "Radiant Patience: You give people and ideas room to develop, and that patience matters.", "Resourceful Spirit: You find possibilities in the resources and opportunities already around you.", "Intellectual Sparkle: Your questions reveal a mind that is lively, observant, and eager to understand.", "Quiet Magnetism: Your presence has a natural pull because it feels genuine and grounded.", "Bold Imagination: You are brave enough to picture something better before it exists.", "Careful Craftsmanship: You care about the details, and that care makes your work stand out.", "Emotional Generosity: You make space for other people's feelings without losing your own center.", "Steady Curiosity: You keep learning with a consistency that makes growth part of who you are.", "Bright Resourcefulness: You turn obstacles into puzzles and approach them with clever determination.", "Natural Diplomacy: You bring people closer by listening carefully and speaking thoughtfully.", "Purposeful Energy: Your enthusiasm is strongest when you connect it to something meaningful.", "Humble Excellence: You can do impressive things without needing to make anyone else feel small.", "Admirable Consistency: Your follow-through turns good intentions into something people can trust.", "Imaginative Empathy: You can imagine another person's perspective, and that is a beautiful kind of intelligence.", "Graceful Independence: You stand on your own while remaining open to connection and collaboration.", "Thoughtful Precision: You notice the small details that help a bigger idea become truly excellent.", "Sunny Resilience: You bring a little sunshine with you, even after a difficult stretch.", "Kind-Hearted Leadership: You make leadership feel like encouragement rather than control.", "Lively Intellect: Your mind keeps conversations interesting and discoveries full of possibility.", "Uncommon Patience: You understand that meaningful things often take time, and you give them that time.", "Creative Optimism: You imagine better outcomes and help make them feel possible.", "Honorable Character: Your values give your talents a foundation people can respect.", "Inventive Confidence: You are willing to experiment, and that openness helps you discover new strengths.", "Comforting Presence: You make people feel more at ease simply by being your genuine self.", "Keen Observation: You notice meaningful details that can make all the difference.", "Fearless Learning: You treat mistakes as lessons and keep moving toward what you want to know.", "Elegant Simplicity: You know that something can be simple and still be deeply beautiful.", "Steady Encouragement: You help other people believe they can do more than they first imagined.", "Purposeful Kindness: You turn caring into action, and that makes your kindness especially powerful.", "Independent Creativity: Your best ideas carry a signature that nobody else could quite reproduce.", "Wonderful Versatility: You can bring different strengths to different moments without losing your identity.", "Gentle Optimism: Your hope feels comforting because it is sincere rather than forced.", "Thoughtful Generosity: You share your time and attention in ways that make people feel important.", "Sparkling Originality: You bring your own color to the world instead of copying someone else's palette.", "Measured Confidence: You know your worth while staying curious about what you can become.", "Persistent Imagination: You keep exploring an idea until its hidden possibilities begin to appear.", "Bright Integrity: Your honesty and principles make your brilliance something people can trust.", "Compassionate Insight: You understand that real wisdom includes both facts and feelings.", "Courageous Individuality: You have the nerve to be yourself, and that is a wonderful kind of bravery.", "Lasting Kindness: The care you show can become a memory someone carries for years.", "Thoughtful Excellence: You aim high without forgetting the people and details along the way.", "Rare Perspective: You bring a point of view that makes the world more interesting to everyone around you.", "Quiet Perseverance: You keep going with a strength that does not need applause to be real.", "Bright-Hearted Creativity: You combine imagination with kindness in a way that feels uniquely uplifting.", "Inspiring Maturity: You can learn from the past while staying excited about what comes next.", "Steady Brilliance: Your talents become even more impressive through the care you put into them.", "Optimistic Leadership: You make the future feel more promising by helping people take the next step.", "Graceful Resilience: You recover, adapt, and continue with a grace that deserves admiration.", "Curious Intelligence: You ask questions that open doors to discoveries and deeper understanding.", "Genuine Warmth: Your warmth is not a performance; it is part of what makes you wonderful.", "Purposeful Originality: You make your own path thoughtfully, and that makes it meaningful.", "Creative Wisdom: You bring imagination and good judgment together in a truly special combination.", "Unforgettable Spirit: You leave a little brightness behind wherever your path crosses someone else's.", "Future-Shaping Potential: Your potential is exciting because you pair big possibilities with a willingness to grow."];
+elementsData.forEach(el => { el.comp = uniqueCompliments[el.num - 1]; });
+
         
 
 function renderPeriodicTable() {
@@ -1004,15 +1382,10 @@ function renderPeriodicTable() {
 
         
 cell.innerHTML = `
-    <span class="text-[8px] text-slate-400">${el.num}</span>
-    <span class="font-bold text-xs ${
-        el.sym === 'O'
-            ? 'text-pink-400 animate-pulse font-extrabold text-sm'
-            : 'text-slate-200'
-    }">${el.sym}</span>
-    <span class="text-[9px] text-slate-200 text-center leading-tight">
-        ${el.name}
-    </span>
+    <span class="element-number">${el.num}</span>
+    <span class="element-symbol">${el.sym}</span>
+    <span class="element-name">${el.name}</span>
+    <span class="element-category">${el.cat || 'Element'}</span>
 `;
 
         cell.title = `${el.num} — ${el.name} (${el.sym})`;
@@ -1021,7 +1394,14 @@ cell.innerHTML = `
             `${el.num}: ${el.name}, symbol ${el.sym}`
         );
 
-        cell.addEventListener('click', () => selectElement(el));
+        cell.dataset.atomicNumber = String(el.num);
+        cell.dataset.category = el.cat || 'Element';
+        cell.dataset.compliment = el.comp;
+        cell.addEventListener('click', () => {
+            selectElement(el);
+            grid.querySelectorAll('.element-card.is-selected').forEach(tile => tile.classList.remove('is-selected'));
+            cell.classList.add('is-selected');
+        });
         grid.appendChild(cell);
     });
 }
@@ -1041,6 +1421,12 @@ cell.innerHTML = `
         }
 
         function selectElement(el) {
+            const inspector = document.getElementById('inspectorCard');
+            if (inspector) {
+                inspector.classList.remove('inspector-update');
+                void inspector.offsetWidth;
+                inspector.classList.add('inspector-update');
+            }
             document.getElementById('inspectNumber').innerText = el.num;
             document.getElementById('inspectNumText').innerText = el.num;
             document.getElementById('inspectMass').innerText = el.mass;
@@ -1050,7 +1436,8 @@ cell.innerHTML = `
             document.getElementById('inspectFullName').innerText = el.name;
             document.getElementById('inspectCategoryBadge').innerText = el.cat;
             document.getElementById('inspectCompliment').innerText = `"${el.comp}"`;
-            document.getElementById('atomCounterBadge').innerText = `Selected: ${el.name} (#${el.num})`;
+            document.getElementById('atomCounterBadge').innerText = `Compliment ${el.num} of 118 · ${el.name}`;
+            celebrateElement(el);
 
             if (synth) synth.triggerAttackRelease("G5", "16n");
         }
@@ -1132,14 +1519,38 @@ cell.innerHTML = `
             cakeCtx.fillStyle = 'rgba(255, 42, 141, 0.2)';
             cakeCtx.fill();
 
-            // Main Cake Disc
+            // Main cake disc with a rich berry-chocolate gradient and glossy icing rim.
+            const cakeGradient = cakeCtx.createRadialGradient(cx-radius*.25,cy-radius*.35,radius*.05,cx,cy,radius*1.15);
+            cakeGradient.addColorStop(0,'#6e2b72');
+            cakeGradient.addColorStop(.42,'#3b174f');
+            cakeGradient.addColorStop(.78,'#211038');
+            cakeGradient.addColorStop(1,'#10091f');
             cakeCtx.beginPath();
             cakeCtx.arc(cx, cy, radius, 0, Math.PI * 2);
-            cakeCtx.fillStyle = '#1c0e33';
-            cakeCtx.strokeStyle = '#00f3ff';
-            cakeCtx.lineWidth = 4;
-            cakeCtx.fill();
-            cakeCtx.stroke();
+            cakeCtx.fillStyle = cakeGradient;
+            cakeCtx.strokeStyle = '#ff9be2';
+            cakeCtx.lineWidth = 5;
+            cakeCtx.shadowColor = '#ff5fc8'; cakeCtx.shadowBlur = 22;
+            cakeCtx.fill(); cakeCtx.stroke(); cakeCtx.shadowBlur = 0;
+
+            // Two decorative frosting rings and tiny jewel-like sprinkles.
+            [0.88,0.76].forEach((scale, idx) => {
+                cakeCtx.beginPath(); cakeCtx.arc(cx,cy,radius*scale,0,Math.PI*2);
+                cakeCtx.strokeStyle = idx ? 'rgba(255,220,143,.85)' : 'rgba(255,150,221,.9)';
+                cakeCtx.lineWidth = idx ? 2 : 3; cakeCtx.stroke();
+            });
+            for (let i=0;i<42;i++) {
+                const a=i*Math.PI*2/42, rr=radius*(.93 + (i%2)*.025);
+                const sx=cx+Math.cos(a)*rr, sy=cy+Math.sin(a)*rr;
+                cakeCtx.beginPath(); cakeCtx.arc(sx,sy,2.2+(i%3)*.5,0,Math.PI*2);
+                cakeCtx.fillStyle=['#ffe49a','#ff8bd4','#9beeff','#ffffff'][i%4];
+                cakeCtx.shadowColor=cakeCtx.fillStyle; cakeCtx.shadowBlur=7; cakeCtx.fill(); cakeCtx.shadowBlur=0;
+            }
+            // A glowing fondant star in the centre makes the cake feel like a birthday jewel.
+            cakeCtx.save(); cakeCtx.translate(cx,cy+radius*.05); cakeCtx.rotate(-Math.PI/2);
+            cakeCtx.beginPath();
+            for(let i=0;i<10;i++){const rr=i%2?10:22; const a=i*Math.PI/5; const px=Math.cos(a)*rr, py=Math.sin(a)*rr; if(i===0)cakeCtx.moveTo(px,py);else cakeCtx.lineTo(px,py);}
+            cakeCtx.closePath(); cakeCtx.fillStyle='#ffe49a'; cakeCtx.shadowColor='#ffe49a'; cakeCtx.shadowBlur=16; cakeCtx.fill(); cakeCtx.restore(); cakeCtx.shadowBlur=0;
 
             // 118 Atom symbols etched on surface
             const symbols = ["1H", "8O", "6C", "7N", "26Fe", "79Au", "47Ag", "118Og"];
@@ -1153,11 +1564,17 @@ cell.innerHTML = `
                 cakeCtx.fillText(symbols[i], x, y);
             }
 
-            // Center Candle Flame
-            cakeCtx.beginPath();
-            cakeCtx.arc(cx, cy, 14, 0, Math.PI * 2);
-            cakeCtx.fillStyle = '#ff2a8d';
-            cakeCtx.fill();
+            // Center candle cluster with animated-looking flame halos.
+            for (let i=-2;i<=2;i++) {
+                const candleX=cx+i*13, candleY=cy-radius*.18;
+                const candleGrad=cakeCtx.createLinearGradient(candleX-4,candleY-15,candleX+4,candleY+18);
+                candleGrad.addColorStop(0,'#fff5c7'); candleGrad.addColorStop(.35,i%2?'#ff8bd4':'#8ef4ff'); candleGrad.addColorStop(1,'#7950b5');
+                cakeCtx.fillStyle=candleGrad; cakeCtx.fillRect(candleX-3,candleY-1,6,20);
+                cakeCtx.beginPath(); cakeCtx.ellipse(candleX,candleY-7,5,9,0,0,Math.PI*2);
+                cakeCtx.fillStyle='rgba(255,220,120,.22)'; cakeCtx.shadowColor='#ffe49a'; cakeCtx.shadowBlur=13; cakeCtx.fill(); cakeCtx.shadowBlur=0;
+                cakeCtx.beginPath(); cakeCtx.moveTo(candleX,candleY-17); cakeCtx.quadraticCurveTo(candleX+7,candleY-8,candleX,candleY-3); cakeCtx.quadraticCurveTo(candleX-7,candleY-8,candleX,candleY-17);
+                cakeCtx.fillStyle='#ffe49a'; cakeCtx.shadowColor='#ff9b42'; cakeCtx.shadowBlur=9; cakeCtx.fill(); cakeCtx.shadowBlur=0;
+            }
 
             // Render Blade Slices
             cuts.forEach(cut => {
@@ -1374,12 +1791,492 @@ cell.innerHTML = `
             document.getElementById('mobileMenu').classList.toggle('hidden');
         }
 
+
+        // Safe optional sound helper: the site still works if Tone.js is not loaded.
+        let synth = null;
+        let magicStarted = false;
+        let lanternAnimationStarted = false;
+        let lanternCtx = null, lanternW = 0, lanternH = 0, skyLanterns = [], magicFireworks = [];
+        let magicAudioContext = null;
+
+        function playFluteMelody() {
+            try {
+                const AudioCtx = window.AudioContext || window.webkitAudioContext;
+                if (!AudioCtx) return;
+                magicAudioContext = magicAudioContext || new AudioCtx();
+                if (magicAudioContext.state === 'suspended') magicAudioContext.resume();
+                const notes = [659.25, 783.99, 880, 1046.5, 880, 783.99, 659.25, 783.99, 1046.5];
+                notes.forEach((freq, i) => {
+                    const start = magicAudioContext.currentTime + i * 0.29;
+                    const osc = magicAudioContext.createOscillator();
+                    const gain = magicAudioContext.createGain();
+                    const vibrato = magicAudioContext.createOscillator();
+                    const vibratoGain = magicAudioContext.createGain();
+                    osc.type = 'sine'; osc.frequency.setValueAtTime(freq, start);
+                    vibrato.frequency.value = 5.2; vibratoGain.gain.value = 3;
+                    vibrato.connect(vibratoGain); vibratoGain.connect(osc.frequency);
+                    gain.gain.setValueAtTime(0.0001, start);
+                    gain.gain.exponentialRampToValueAtTime(0.12, start + 0.06);
+                    gain.gain.exponentialRampToValueAtTime(0.0001, start + 0.27);
+                    osc.connect(gain); gain.connect(magicAudioContext.destination);
+                    osc.start(start); vibrato.start(start);
+                    osc.stop(start + 0.3); vibrato.stop(start + 0.3);
+                });
+            } catch (err) { console.log('Flute sound unavailable; visual magic will still play.', err); }
+        }
+
+        function resizeLanternCanvas() {
+            const canvas = document.getElementById('lanternCanvas');
+            if (!canvas) return;
+            const dpr = Math.min(window.devicePixelRatio || 1, 2);
+            lanternW = window.innerWidth; lanternH = window.innerHeight;
+            canvas.width = lanternW * dpr; canvas.height = lanternH * dpr;
+            canvas.style.width = lanternW + 'px'; canvas.style.height = lanternH + 'px';
+            lanternCtx = canvas.getContext('2d');
+            lanternCtx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        }
+
+        function launchSkyLanterns() {
+            if (!cosmicMagicStarted) return;
+            resizeLanternCanvas();
+            if (lanternAnimationStarted) return;
+            lanternAnimationStarted = true;
+            window.addEventListener('resize', resizeLanternCanvas);
+            // Hundreds of individually glowing lanterns rise in layered waves.
+            for (let i = 0; i < 360; i++) {
+                skyLanterns.push({
+                    x: Math.random() * lanternW,
+                    y: lanternH + Math.random() * lanternH * 1.8,
+                    size: 12 + Math.random() * 13,
+                    speed: 0.42 + Math.random() * 1.0,
+                    drift: (Math.random() - 0.5) * 0.45,
+                    sway: Math.random() * Math.PI * 2,
+                    hue: [34, 43, 276, 323, 190][Math.floor(Math.random() * 5)],
+                    alpha: 0.55 + Math.random() * 0.4
+                });
+            }
+            const loop = () => {
+                if (!lanternCtx) return;
+                lanternCtx.clearRect(0, 0, lanternW, lanternH);
+                skyLanterns.forEach(l => {
+                    l.y -= l.speed;
+                    l.sway += 0.012;
+                    l.x += l.drift + Math.sin(l.sway) * 0.25;
+                    if (l.y < -70) { l.y = lanternH + Math.random() * 180; l.x = Math.random() * lanternW; }
+                    const glow = lanternCtx.createRadialGradient(l.x, l.y, 1, l.x, l.y, l.size * 4.2);
+                    glow.addColorStop(0, `hsla(${l.hue},100%,78%,${l.alpha})`);
+                    glow.addColorStop(1, `hsla(${l.hue},100%,60%,0)`);
+                    lanternCtx.fillStyle = glow;
+                    lanternCtx.beginPath(); lanternCtx.arc(l.x, l.y, l.size * 4.2, 0, Math.PI * 2); lanternCtx.fill();
+                    lanternCtx.fillStyle = `hsla(${l.hue},100%,78%,${l.alpha})`;
+                    lanternCtx.beginPath();
+                    // A broader, taller, jewel-bright lantern with a paper rim and inner flame.
+                    lanternCtx.save();
+                    lanternCtx.translate(l.x, l.y);
+                    lanternCtx.fillStyle = `hsla(${l.hue},100%,76%,${Math.min(1,l.alpha+.12)})`;
+                    lanternCtx.beginPath();
+                    lanternCtx.moveTo(-l.size*.82, -l.size*.72);
+                    lanternCtx.quadraticCurveTo(-l.size*1.1, 0, -l.size*.66, l.size*1.55);
+                    lanternCtx.quadraticCurveTo(0, l.size*1.88, l.size*.66, l.size*1.55);
+                    lanternCtx.quadraticCurveTo(l.size*1.1, 0, l.size*.82, -l.size*.72);
+                    lanternCtx.closePath(); lanternCtx.fill();
+                    lanternCtx.fillStyle = 'rgba(255,255,245,.28)';
+                    lanternCtx.fillRect(-l.size*.46, -l.size*.45, l.size*.16, l.size*1.45);
+                    lanternCtx.strokeStyle = 'rgba(255,246,205,.85)';
+                    lanternCtx.lineWidth = Math.max(1,l.size*.075);
+                    lanternCtx.beginPath();
+                    lanternCtx.ellipse(0, -l.size*.7, l.size*.82, l.size*.22, 0, 0, Math.PI*2);
+                    lanternCtx.stroke();
+                    lanternCtx.beginPath();
+                    lanternCtx.ellipse(0, l.size*1.56, l.size*.68, l.size*.18, 0, 0, Math.PI*2);
+                    lanternCtx.stroke();
+                    const flame = lanternCtx.createRadialGradient(0,l.size*.55,1,0,l.size*.55,l.size*.62);
+                    flame.addColorStop(0,'rgba(255,255,220,.95)');
+                    flame.addColorStop(.45,`hsla(${l.hue},100%,82%,.6)`);
+                    flame.addColorStop(1,'rgba(255,255,220,0)');
+                    lanternCtx.fillStyle=flame;
+                    lanternCtx.beginPath(); lanternCtx.arc(0,l.size*.55,l.size*.62,0,Math.PI*2); lanternCtx.fill();
+                    lanternCtx.restore();
+                });
+                magicFireworks.forEach((f, idx) => {
+                    f.particles.forEach(p => {
+                        p.x += p.vx; p.y += p.vy; p.vy += 0.018; p.life -= 0.012;
+                        lanternCtx.globalAlpha = Math.max(0, p.life);
+                        lanternCtx.fillStyle = f.color;
+                        lanternCtx.beginPath(); lanternCtx.arc(p.x, p.y, p.r, 0, Math.PI * 2); lanternCtx.fill();
+                    });
+                    f.particles = f.particles.filter(p => p.life > 0);
+                    if (!f.particles.length) magicFireworks.splice(idx, 1);
+                });
+                lanternCtx.globalAlpha = 1;
+                requestAnimationFrame(loop);
+            };
+            loop();
+            // Start fireworks in celebratory bursts for several seconds.
+            let bursts = 0;
+            const burstTimer = setInterval(() => {
+                makeMagicFirework();
+                if (++bursts > 16) clearInterval(burstTimer);
+            }, 620);
+        }
+
+        function makeMagicFirework() {
+            if (!lanternW || !lanternH) return;
+            const x = lanternW * (0.12 + Math.random() * 0.76);
+            const y = lanternH * (0.12 + Math.random() * 0.52);
+            const colors = ['#ffd778', '#ff8bd4', '#a9f7ff', '#d6a7ff', '#ffffff', '#ffb46e'];
+            const color = colors[Math.floor(Math.random() * colors.length)];
+            const particles = [];
+            for (let i = 0; i < 88; i++) {
+                const a = Math.random() * Math.PI * 2, speed = 1.0 + Math.random() * 5.6;
+                particles.push({x, y, vx: Math.cos(a) * speed, vy: Math.sin(a) * speed, life: .8 + Math.random() * .3, r: 1.3 + Math.random() * 2.6});
+            }
+            magicFireworks.push({particles, color});
+            if (typeof confetti === 'function') confetti({particleCount: 45, spread: 90, startVelocity: 30, origin: {x: x / lanternW, y: y / lanternH}, colors: ['#ffd778','#ff8bd4','#a9f7ff','#d6a7ff']});
+        }
+
+
+        // Robust navigation: the destination is revealed before scrolling, so the page
+        // never waits for a mouse-wheel movement to make the next section appear.
+
+        // Cosmic ambience is deliberately dormant until the flute is touched.
+        let cosmicMagicStarted = false;
+        let cosmicFrame = null;
+        let cosmicStars = [];
+        let cosmicFireflies = [];
+        function createCosmicMagic() {
+            if (cosmicMagicStarted) return;
+            cosmicMagicStarted = true;
+            document.body.classList.add('cosmic-magic-awake');
+            const canvas = document.getElementById('magicCosmosCanvas');
+            if (!canvas) return;
+            const ctx = canvas.getContext('2d');
+            if (!ctx) return;
+
+            const resizeCosmos = () => {
+                const dpr = Math.min(window.devicePixelRatio || 1, 2);
+                canvas.width = Math.floor(window.innerWidth * dpr);
+                canvas.height = Math.floor(window.innerHeight * dpr);
+                canvas.style.width = window.innerWidth + 'px';
+                canvas.style.height = window.innerHeight + 'px';
+                ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+                cosmicStars = Array.from({length: 140}, () => ({
+                    x: Math.random() * window.innerWidth,
+                    y: Math.random() * window.innerHeight,
+                    r: .4 + Math.random() * 1.7,
+                    phase: Math.random() * Math.PI * 2,
+                    speed: .006 + Math.random() * .022,
+                    hue: [185, 220, 275, 315, 48][Math.floor(Math.random() * 5)]
+                }));
+                cosmicFireflies = Array.from({length: 36}, () => ({
+                    x: Math.random() * window.innerWidth,
+                    y: Math.random() * window.innerHeight,
+                    vx: (Math.random() - .5) * .45,
+                    vy: -.15 - Math.random() * .5,
+                    r: 1.5 + Math.random() * 2.7,
+                    phase: Math.random() * 6.28,
+                    hue: [45, 160, 185, 285, 325][Math.floor(Math.random() * 5)]
+                }));
+            };
+            resizeCosmos();
+            window.addEventListener('resize', resizeCosmos, {passive:true});
+
+            // Add drifting crystals and tiny cosmic orbs.
+            const palette = ['#9bf7ff', '#d6a7ff', '#ff9edb', '#ffe7a3', '#a8b7ff'];
+            for (let i = 0; i < 14; i++) {
+                const crystal = document.createElement('div');
+                crystal.className = 'magic-cosmic-crystal';
+                crystal.setAttribute('aria-hidden', 'true');
+                crystal.style.setProperty('--cx', `${5 + Math.random() * 90}%`);
+                crystal.style.setProperty('--cy', `${8 + Math.random() * 82}%`);
+                crystal.style.setProperty('--cw', `${10 + Math.random() * 22}px`);
+                crystal.style.setProperty('--ch', `${20 + Math.random() * 45}px`);
+                crystal.style.setProperty('--cr', `${Math.random() * 360}deg`);
+                crystal.style.setProperty('--cc', palette[i % palette.length]);
+                crystal.style.setProperty('--co', `${.25 + Math.random() * .4}`);
+                crystal.style.setProperty('--cd', `${4 + Math.random() * 7}s`);
+                document.body.appendChild(crystal);
+            }
+            for (let i = 0; i < 12; i++) {
+                const orb = document.createElement('div');
+                orb.className = 'magic-cosmic-orb';
+                orb.setAttribute('aria-hidden', 'true');
+                orb.style.setProperty('--ox', `${Math.random() * 100}%`);
+                orb.style.setProperty('--oy', `${Math.random() * 100}%`);
+                orb.style.setProperty('--os', `${8 + Math.random() * 24}px`);
+                orb.style.setProperty('--oc', palette[i % palette.length]);
+                orb.style.setProperty('--oo', `${.2 + Math.random() * .25}`);
+                orb.style.setProperty('--od', `${5 + Math.random() * 8}s`);
+                document.body.appendChild(orb);
+            }
+
+            let tick = 0;
+            const draw = () => {
+                if (!document.body.classList.contains('cosmic-magic-awake')) {
+                    cosmicFrame = requestAnimationFrame(draw);
+                    return;
+                }
+                tick++;
+                ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
+
+                // Slow nebula ribbons / cosmic currents.
+                ctx.save();
+                ctx.globalCompositeOperation = 'screen';
+                for (let band = 0; band < 3; band++) {
+                    const y = window.innerHeight * (.22 + band * .27);
+                    ctx.beginPath();
+                    for (let x = -40; x <= window.innerWidth + 40; x += 14) {
+                        const waveY = y + Math.sin(x * .003 + tick * .008 + band * 1.7) * (24 + band * 9)
+                            + Math.sin(x * .009 - tick * .006) * 9;
+                        if (x === -40) ctx.moveTo(x, waveY); else ctx.lineTo(x, waveY);
+                    }
+                    ctx.strokeStyle = ['rgba(109,140,255,.055)','rgba(255,94,199,.045)','rgba(93,239,255,.04)'][band];
+                    ctx.lineWidth = 28 + band * 10;
+                    ctx.shadowBlur = 32;
+                    ctx.shadowColor = ['#7996ff','#ff65c8','#65edff'][band];
+                    ctx.stroke();
+                }
+                ctx.restore();
+
+                // Twinkling stars.
+                for (const s of cosmicStars) {
+                    s.phase += s.speed;
+                    const alpha = .18 + (Math.sin(s.phase) + 1) * .36;
+                    ctx.beginPath();
+                    ctx.fillStyle = `hsla(${s.hue},100%,84%,${alpha})`;
+                    ctx.shadowBlur = 8;
+                    ctx.shadowColor = `hsla(${s.hue},100%,75%,${alpha})`;
+                    ctx.arc(s.x, s.y, s.r * (.7 + alpha), 0, Math.PI * 2);
+                    ctx.fill();
+                    if (s.r > 1.55 && alpha > .65) {
+                        ctx.strokeStyle = `rgba(255,255,255,${alpha * .6})`;
+                        ctx.lineWidth = .7;
+                        ctx.beginPath(); ctx.moveTo(s.x - 4, s.y); ctx.lineTo(s.x + 4, s.y);
+                        ctx.moveTo(s.x, s.y - 4); ctx.lineTo(s.x, s.y + 4); ctx.stroke();
+                    }
+                }
+
+                // Fireflies meander through the air with glowing tails.
+                for (const f of cosmicFireflies) {
+                    f.x += f.vx + Math.sin(tick * .014 + f.phase) * .28;
+                    f.y += f.vy + Math.cos(tick * .012 + f.phase) * .2;
+                    if (f.y < -20) { f.y = window.innerHeight + 15; f.x = Math.random() * window.innerWidth; }
+                    if (f.x < -20) f.x = window.innerWidth + 10;
+                    if (f.x > window.innerWidth + 20) f.x = -10;
+                    const glow = .42 + (Math.sin(tick * .06 + f.phase) + 1) * .28;
+                    const grad = ctx.createRadialGradient(f.x, f.y, 0, f.x, f.y, f.r * 5);
+                    grad.addColorStop(0, `hsla(${f.hue},100%,90%,${glow})`);
+                    grad.addColorStop(.22, `hsla(${f.hue},100%,68%,${glow * .75})`);
+                    grad.addColorStop(1, `hsla(${f.hue},100%,55%,0)`);
+                    ctx.fillStyle = grad;
+                    ctx.beginPath(); ctx.arc(f.x, f.y, f.r * 5, 0, Math.PI * 2); ctx.fill();
+                    ctx.beginPath(); ctx.fillStyle = `hsla(${f.hue},100%,92%,${glow})`;
+                    ctx.arc(f.x, f.y, f.r, 0, Math.PI * 2); ctx.fill();
+                }
+                ctx.shadowBlur = 0;
+                cosmicFrame = requestAnimationFrame(draw);
+            };
+            draw();
+        }
+
+        function launchMagicalGlyphs() {
+            const symbols = ['🌸','🌷','🌺','💐','🦋','✨','💖','⭐','🌟','🔮','🪄','💎','🧚','🌙','🎉','🎊','🎆','💫'];
+            const layer = document.getElementById('magicCelebrationLayer');
+            if (!layer || layer.dataset.skyGlyphsStarted === 'yes') return;
+            layer.dataset.skyGlyphsStarted = 'yes';
+            const count = window.innerWidth < 600 ? 18 : 28;
+            for (let i = 0; i < count; i++) {
+                const glyph = document.createElement('span');
+                glyph.className = 'magic-sky-glyph';
+                glyph.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+                glyph.style.setProperty('--gx', `${Math.random() * 96 + 2}vw`);
+                glyph.style.setProperty('--gs', `${20 + Math.random() * 24}px`);
+                glyph.style.setProperty('--gd', `${7 + Math.random() * 7}s`);
+                glyph.style.setProperty('--gx-drift', `${(Math.random() - .5) * 180}px`);
+                glyph.style.setProperty('--gr', `${(Math.random() - .5) * 220}deg`);
+                glyph.style.setProperty('--glow', ['#ffe49a','#ff7fc8','#a9f7ff','#c8a2ff'][i % 4]);
+                glyph.style.animationDelay = `${Math.random() * 2.4}s`;
+                layer.appendChild(glyph);
+                window.setTimeout(() => glyph.remove(), 16000);
+            }
+        }
+
+        function startFluteLanternMagic() {
+            createCosmicMagic();
+            launchMagicalGlyphs();
+            if (typeof launchSkyLanterns === 'function') launchSkyLanterns();
+            // Start with a generous set of celebratory fireworks and magical icons.
+            if (typeof makeMagicFirework === 'function') {
+                makeMagicFirework();
+                setTimeout(makeMagicFirework, 180);
+                setTimeout(makeMagicFirework, 380);
+                setTimeout(makeMagicFirework, 620);
+            }
+        }
+
+        function enterChemicalUniverse() {
+            const target = document.getElementById('scene-2');
+            if (!target) return;
+            target.classList.add('is-visible');
+            const panel = target.querySelector('.glass-panel');
+            if (panel) {
+                panel.classList.add('is-visible');
+                panel.classList.remove('reveal-on-scroll');
+            }
+            target.style.visibility = 'visible';
+            target.style.opacity = '1';
+            requestAnimationFrame(() => {
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                window.setTimeout(() => {
+                    const oxygen = document.querySelector('#periodicGrid .is-oxygen');
+                    if (oxygen) oxygen.focus({ preventScroll: true });
+                }, 850);
+            });
+        }
+
+        let complimentToastTimer = null;
+        function celebrateElement(el) {
+            const layer = document.getElementById('magicCelebrationLayer');
+            if (!layer || !el) return;
+
+            // Ensure the lantern canvas is alive even if the visitor enters the table first.
+            if (cosmicMagicStarted && !lanternAnimationStarted) launchSkyLanterns();
+            const toast = document.createElement('div');
+            toast.className = 'magic-compliment-toast';
+            const compliment = String(el.comp || 'You are wonderfully one of a kind.');
+            const splitAt = compliment.indexOf(':');
+            const title = splitAt > -1 ? compliment.slice(0, splitAt) : `Element ${el.num} · ${el.name}`;
+            const message = splitAt > -1 ? compliment.slice(splitAt + 1).trim() : compliment;
+            const flourishes = ['🌸 ✨ 🦋 ✨ 🌸', '🌷 💫 🪄 💫 🌷', '🌺 ⭐ 🧪 ⭐ 🌺', '💐 🌙 ✨ 🌙 💐', '🦄 💖 🔮 💖 🦄'];
+            toast.innerHTML = `<div class="magic-toast-flourish">${flourishes[(el.num - 1) % flourishes.length]}</div>
+                <div class="magic-toast-title">Compliment ${el.num} / 118 · ${title}</div>
+                <div class="magic-toast-message">${message.replace(/[&<>"]/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[ch]))}</div>`;
+            layer.querySelectorAll('.magic-compliment-toast').forEach(node => node.remove());
+            layer.appendChild(toast);
+            if (complimentToastTimer) clearTimeout(complimentToastTimer);
+            complimentToastTimer = setTimeout(() => {
+                toast.style.transition = 'opacity .5s ease, transform .5s ease';
+                toast.style.opacity = '0';
+                toast.style.transform = 'translate(-50%, 18px) scale(.97)';
+                setTimeout(() => toast.remove(), 550);
+            }, 4300);
+
+            // A larger multi-colour burst plus floating flowers, hearts, and magic symbols.
+            makeMagicFirework();
+            setTimeout(makeMagicFirework, 120);
+            setTimeout(makeMagicFirework, 260);
+            if (typeof confetti === 'function') {
+                try {
+                    confetti({ particleCount: 110, spread: 115, startVelocity: 38,
+                        origin: { x: 0.5, y: 0.62 },
+                        colors: ['#ffd778','#ff8bd4','#a9f7ff','#d6a7ff','#ffffff','#ffb46e'] });
+                } catch (_) {}
+            }
+            const icons = ['🌸','🌷','🌺','💐','✨','💖','🦋','⭐','🌟','🪄','🔮','🧪','💫','🌼','🩷'];
+            const rect = document.getElementById('periodicGrid')?.getBoundingClientRect();
+            const originX = rect ? Math.min(window.innerWidth - 24, Math.max(24, rect.left + rect.width / 2)) : window.innerWidth / 2;
+            const originY = rect ? Math.min(window.innerHeight - 24, Math.max(24, rect.top + Math.min(rect.height / 2, 160))) : window.innerHeight / 2;
+            for (let i = 0; i < 28; i++) {
+                const icon = document.createElement('span');
+                icon.className = 'magic-floating-icon';
+                icon.textContent = icons[Math.floor(Math.random() * icons.length)];
+                icon.style.setProperty('--x', `${originX + (Math.random() - .5) * 180}px`);
+                icon.style.setProperty('--y', `${originY + (Math.random() - .5) * 100}px`);
+                icon.style.setProperty('--dx', `${(Math.random() - .5) * 320}px`);
+                icon.style.setProperty('--dy', `${-100 - Math.random() * 260}px`);
+                icon.style.setProperty('--size', `${18 + Math.random() * 24}px`);
+                icon.style.setProperty('--duration', `${1.3 + Math.random() * 1.5}s`);
+                icon.style.setProperty('--rot', `${(Math.random() - .5) * 100}deg`);
+                layer.appendChild(icon);
+                setTimeout(() => icon.remove(), 3000);
+            }
+        }
+
+        function playBirthdayMagic() {
+            startFluteLanternMagic();
+
+            if (magicStarted) return;
+            magicStarted = true;
+            const overlay = document.getElementById('fluteExperience');
+            overlay.classList.add('revealed');
+            document.getElementById('fluteButton').disabled = true;
+            document.getElementById('fluteButton').style.opacity = '.6';
+            playFluteMelody();
+            launchSkyLanterns();
+            // A short pause lets the flute note begin before the sky erupts.
+            setTimeout(() => {
+                makeMagicFirework();
+                setTimeout(makeMagicFirework, 180);
+                setTimeout(makeMagicFirework, 360);
+                setTimeout(() => {
+                    document.getElementById('birthdayReveal').scrollIntoView?.({block:'nearest'});
+                }, 350);
+            }, 500);
+            setTimeout(() => {
+                overlay.classList.add('dismissed');
+            }, 9500);
+        }
+
+
         window.onload = function() {
             initBgCanvas();
             renderPeriodicTable();
+            const oxygenTile = document.querySelector('#periodicGrid .is-oxygen');
+            if (oxygenTile) {
+                oxygenTile.classList.add('is-selected');
+                const oxygen = elementsData.find(el => el.sym === 'O');
+                if (oxygen) selectElement(oxygen);
+            }
             initCakeCanvas();
             renderFloralWreath();
+            initVisualPolish();
         };
-    </script>
+    
+        // Visual polish: gently reveal scenes as they enter the viewport.
+        // Falls back to showing everything if IntersectionObserver is unavailable.
+        function initVisualPolish() {
+            const scenes = document.querySelectorAll('main section[id^="scene-"]');
+            if (!('IntersectionObserver' in window)) {
+                scenes.forEach(scene => scene.classList.add('is-visible'));
+                return;
+            }
+            scenes.forEach(scene => {
+                const panel = scene.querySelector('.glass-panel, .glass-panel-pink');
+                if (panel) panel.classList.add('reveal-on-scroll');
+            });
+            const observer = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.12, rootMargin: '0px 0px -35px 0px' });
+            document.querySelectorAll('.reveal-on-scroll').forEach(el => observer.observe(el));
+
+            // Make the gift box keyboard-accessible as well as clickable.
+            const gift = document.getElementById('giftBoxContainer');
+            if (gift) {
+                gift.setAttribute('role', 'button');
+                gift.setAttribute('tabindex', '0');
+                gift.setAttribute('aria-label', 'Open Aysha birthday gift');
+                gift.addEventListener('keydown', event => {
+                    if (event.key === 'Enter' || event.key === ' ') {
+                        event.preventDefault();
+                        openGiftModal();
+                    }
+                });
+            }
+        }
+
+        // Close the gift modal with Escape, a familiar and accessible interaction.
+        document.addEventListener('keydown', event => {
+            if (event.key === 'Escape') {
+                const modal = document.getElementById('giftModal');
+                if (modal && !modal.classList.contains('hidden')) closeGiftModal();
+            }
+        });
+
+</script>
 </body>
 </html>
